@@ -1,5 +1,6 @@
 //
-//  FirstViewController.m
+//  CurrentLocationViewController.m
+//  (originally FirstViewController.m)
 //  MyLocations
 //
 //  Created by João Carreira on 8/19/13.
