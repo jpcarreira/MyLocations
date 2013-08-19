@@ -93,6 +93,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="getLocation:" destination="2" eventType="touchUpInside" id="m3U-GW-b3a"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -100,7 +103,7 @@
                     <navigationItem key="navigationItem" id="8zB-NG-P7x"/>
                     <connections>
                         <outlet property="addressLabel" destination="nWL-sA-uFk" id="iyv-iV-Vmv"/>
-                        <outlet property="getButton" destination="qhU-7N-4Gh" id="Sar-mU-Cwy"/>
+                        <outlet property="getButton" destination="qhU-7N-4Gh" id="fl0-uL-04f"/>
                         <outlet property="latitudeLabel" destination="bNu-UF-Nnb" id="crH-rI-ygi"/>
                         <outlet property="longitudeLabel" destination="GjI-U9-aBJ" id="aDF-L6-bD4"/>
                         <outlet property="messageLabel" destination="DIf-yX-hcK" id="aNn-Rh-Fe2"/>

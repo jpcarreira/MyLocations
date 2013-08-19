@@ -8,8 +8,11 @@
 //
 
 #import <UIKit/UIKit.h>
+// import needed to work with Core Location Framework
+#import <CoreLocation/CoreLocation.h>
 
-@interface CurrentLocationViewController : UIViewController
+// Core Location works with a delegate therefore we need to make this view controller to conform with the CLLocationManagerDelegate protocol
+@interface CurrentLocationViewController : UIViewController<CLLocationManagerDelegate>
 
 // label for status messages
 @property (nonatomic, strong) IBOutlet UILabel *messageLabel;
@@ -26,9 +29,10 @@
 // connected to "Tag Location" button
 @property (nonatomic, strong) IBOutlet UIButton *tagButton;
 
-// connected to "Get My Location" button (touch up inside)
+// connected to "Get My Location" button
 @property (nonatomic, strong) IBOutlet UIButton *getButton;
 
+// connected to "Get My Location" button using "touch up inside" event
 -(IBAction)getLocation:(id)sender;
 
 @end
