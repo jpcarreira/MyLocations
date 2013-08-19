@@ -15,6 +15,8 @@
 
 @implementation CurrentLocationViewController
 
+@synthesize messageLabel, latitudeLabel, longitudeLabel, addressLabel, tagButton, getButton;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];	
@@ -29,6 +31,22 @@
 {
     // forcing portrait orientation only
     return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)viewDidUnload
+{
+    [self setGetButton:nil];
+    [super viewDidUnload];
+}
+
+#pragma mark - instance methods
+
+/**
+ * gets current GPS location
+ */
+-(IBAction)getLocation:(id)sender
+{
+    
 }
 
 @end
