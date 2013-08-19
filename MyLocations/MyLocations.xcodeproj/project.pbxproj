@@ -17,7 +17,7 @@
 		6266A3CF17C2838400B53753 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6266A3CE17C2838400B53753 /* Default@2x.png */; };
 		6266A3D117C2838400B53753 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6266A3D017C2838400B53753 /* Default-568h@2x.png */; };
 		6266A3D417C2838400B53753 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6266A3D217C2838400B53753 /* MainStoryboard.storyboard */; };
-		6266A3D717C2838400B53753 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6266A3D617C2838400B53753 /* FirstViewController.m */; };
+		6266A3D717C2838400B53753 /* CurrentLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6266A3D617C2838400B53753 /* CurrentLocationViewController.m */; };
 		6266A3D917C2838400B53753 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 6266A3D817C2838400B53753 /* first.png */; };
 		6266A3DB17C2838400B53753 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6266A3DA17C2838400B53753 /* first@2x.png */; };
 		6266A3DE17C2838400B53753 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6266A3DD17C2838400B53753 /* SecondViewController.m */; };
@@ -40,8 +40,8 @@
 		6266A3CE17C2838400B53753 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		6266A3D017C2838400B53753 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6266A3D317C2838400B53753 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		6266A3D517C2838400B53753 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		6266A3D617C2838400B53753 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		6266A3D517C2838400B53753 /* CurrentLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrentLocationViewController.h; sourceTree = "<group>"; };
+		6266A3D617C2838400B53753 /* CurrentLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurrentLocationViewController.m; sourceTree = "<group>"; };
 		6266A3D817C2838400B53753 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		6266A3DA17C2838400B53753 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
 		6266A3DC17C2838400B53753 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
@@ -97,8 +97,8 @@
 				6266A3C917C2838400B53753 /* AppDelegate.h */,
 				6266A3CA17C2838400B53753 /* AppDelegate.m */,
 				6266A3D217C2838400B53753 /* MainStoryboard.storyboard */,
-				6266A3D517C2838400B53753 /* FirstViewController.h */,
-				6266A3D617C2838400B53753 /* FirstViewController.m */,
+				6266A3D517C2838400B53753 /* CurrentLocationViewController.h */,
+				6266A3D617C2838400B53753 /* CurrentLocationViewController.m */,
 				6266A3D817C2838400B53753 /* first.png */,
 				6266A3DA17C2838400B53753 /* first@2x.png */,
 				6266A3DC17C2838400B53753 /* SecondViewController.h */,
@@ -196,7 +196,7 @@
 			files = (
 				6266A3C717C2838400B53753 /* main.m in Sources */,
 				6266A3CB17C2838400B53753 /* AppDelegate.m in Sources */,
-				6266A3D717C2838400B53753 /* FirstViewController.m in Sources */,
+				6266A3D717C2838400B53753 /* CurrentLocationViewController.m in Sources */,
 				6266A3DE17C2838400B53753 /* SecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
