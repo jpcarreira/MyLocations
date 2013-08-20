@@ -225,14 +225,39 @@ NSError *lastLocationError;
     // prints new location
     NSLog(@"Did update location: %@", newLocation);
     
-    // in case we had a previous error we need to clear it because now there's sucess getting GPS coordinates
-    lastLocationError = nil;
+    // if the time at which the location object was determined is longer than 5 seconds ago, instead of returning a new location fix, the location manager gives the most recent found location assuming that the user hasn't moved much since 5 seconds ago (i.e., we're ignoring cached results)
+    if([newLocation.timestamp timeIntervalSinceNow] < -5.0)
+    {
+        return;
+    }
     
-    // storing the new location
-    location = newLocation;
+    // we're using horizontal accuracy to evaluate the accuracy of the location reading; when it's value is less than 0 it is invalid and we should ignore it
+    if(newLocation.horizontalAccuracy < 0)
+    {
+        return;
+    }
     
-    // updating screen labels
-    [self updateLabels];
+    // this condition evaluates that the new reading is more accurate than the previous one
+    if(location == nil || location.horizontalAccuracy > newLocation.horizontalAccuracy)
+    {
+        // in case we had a previous error we need to clear it because now there's sucess getting GPS coordinates
+        lastLocationError = nil;
+        
+        // storing the new location
+        location = newLocation;
+        
+        // updating screen labels
+        [self updateLabels];
+        
+        // if the new location accuracy is equal or better than the desired accuracy we set location manager to stop updating
+        if(newLocation.horizontalAccuracy <= locationManager.desiredAccuracy)
+        {
+            NSLog(@"We're done!");
+            [self stopLocationManager];
+        }
+    }
+    
+    
 }
 
 @end

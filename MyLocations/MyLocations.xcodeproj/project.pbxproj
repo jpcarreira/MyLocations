@@ -70,7 +70,6 @@
 		6266A3AE17C2838400B53753 = {
 			isa = PBXGroup;
 			children = (
-				6266A3E817C2BEDA00B53753 /* CoreLocation.framework */,
 				6266A3C017C2838400B53753 /* MyLocations */,
 				6266A3B917C2838400B53753 /* Frameworks */,
 				6266A3B817C2838400B53753 /* Products */,
@@ -88,6 +87,7 @@
 		6266A3B917C2838400B53753 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6266A3E817C2BEDA00B53753 /* CoreLocation.framework */,
 				6266A3BA17C2838400B53753 /* UIKit.framework */,
 				6266A3BC17C2838400B53753 /* Foundation.framework */,
 				6266A3BE17C2838400B53753 /* CoreGraphics.framework */,
@@ -326,6 +326,7 @@
 				6266A3E717C2838400B53753 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

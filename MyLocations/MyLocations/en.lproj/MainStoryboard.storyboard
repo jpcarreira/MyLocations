@@ -100,7 +100,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="8zB-NG-P7x"/>
+                    <navigationItem key="navigationItem" title="Current Location" id="8zB-NG-P7x"/>
                     <connections>
                         <outlet property="addressLabel" destination="nWL-sA-uFk" id="iyv-iV-Vmv"/>
                         <outlet property="getButton" destination="qhU-7N-4Gh" id="fl0-uL-04f"/>
