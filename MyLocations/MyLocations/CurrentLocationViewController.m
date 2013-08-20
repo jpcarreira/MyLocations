@@ -29,6 +29,18 @@ BOOL updatingLocation;
 // ivar to store any error from Core Location
 NSError *lastLocationError;
 
+// ivar for the Geocoder object
+CLGeocoder *geocoder;
+
+// ivar for the object that will contain the address result
+CLPlacemark *placemark;
+
+// ivar that indicates whether reverse geocoding is taking place
+BOOL performingReverseGeocoding;
+
+// ivar to store any error from reverse geocoding
+NSError *lastGeocodingError;
+
 
 # pragma mark - standard ViewController methods
 
@@ -71,6 +83,9 @@ NSError *lastLocationError;
     {
         // creating the CLLocationManager object 
         locationManager = [[CLLocationManager alloc] init];
+        
+        // creating the geocoder object
+        geocoder = [[CLGeocoder alloc] init];
     }
     return self;
 }
@@ -291,6 +306,45 @@ NSError *lastLocationError;
             [self stopLocationManager];
             
             [self configureGetButton];
+        }
+        
+        // code to support reverse geocoding
+        // we only want to perform reverse geocoding once so we check if we can do it using the ivar
+        if(!performingReverseGeocoding)
+        {
+            NSLog(@"Going to reverse geocode");
+            
+            // setting reverse geocoding flag to true
+            performingReverseGeocoding = YES;
+            
+            // CLGeocoder uses a block instead of a delegate
+            [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error)
+             {
+                 NSLog(@"Found placemarks: %@\nError: %@", placemarks, error);
+                 
+                 // saving eventual error to the ivar
+                 lastGeocodingError = error;
+                 
+                 // if there are no errors and we have objects inside the array we'll keep the last object of that array as a placemark
+                 // (usually there's only one object in the array but sometimes one location coordinate may correspond to more than one address)
+                 if(error == nil && [placemarks count] > 0)
+                 {
+                     // as said before we save the last object
+                     placemark = [placemarks lastObject];
+                 }
+                 else
+                 {
+                     // setting placemark to nill if reverse geocoding didn't work
+                     placemark = nil;
+                 }
+                 
+                 // setting the flag value to false
+                 performingReverseGeocoding = NO;
+                 
+                 // updating labels
+                 [self updateLabels];
+             }
+             ];
         }
     }
 }
