@@ -38,6 +38,8 @@ NSError *lastLocationError;
     
     // this needs to called in order to present proper text in the labels when there's still no GPS coordinates
 	[self updateLabels];
+    
+    [self configureGetButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,8 +88,27 @@ NSError *lastLocationError;
     
     // updating labels
     [self updateLabels];
+    
+    [self configureGetButton];
 }
 
+
+/**
+ * configures properties of the "Get Location" button
+ */
+-(void)configureGetButton
+{
+    // if the app is updating the current location
+    if(updatingLocation)
+    {
+        [self.getButton setTitle:@"Stop!" forState:UIControlStateNormal];
+    }
+    // if we already have a valid GPS location
+    else
+    {
+        [self.getButton setTitle:@"Get My Location" forState:UIControlStateNormal];
+    }
+}
 
 /**
  * updates screen labels with the location stored in the ivar
@@ -218,6 +239,8 @@ NSError *lastLocationError;
     
     // updating the labels for the error situation
     [self updateLabels];
+    
+    [self configureGetButton];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
@@ -254,10 +277,10 @@ NSError *lastLocationError;
         {
             NSLog(@"We're done!");
             [self stopLocationManager];
+            
+            [self configureGetButton];
         }
     }
-    
-    
 }
 
 @end
