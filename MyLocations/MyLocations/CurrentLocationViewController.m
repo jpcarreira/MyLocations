@@ -23,6 +23,15 @@ CLLocationManager *locationManager;
 // ivar to store location
 CLLocation *location;
 
+// ivar that indicates whether the app is updating GPS coordinates or not
+BOOL updatingLocation;
+
+// ivar to store any error from Core Location
+NSError *lastLocationError;
+
+
+# pragma mark - standard ViewController methods
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -72,14 +81,11 @@ CLLocation *location;
  */
 -(IBAction)getLocation:(id)sender
 {
-    // making the current view controller a delegate of Core Location
-    locationManager.delegate = self;
+    // starting location manager
+    [self startLocationManager];
     
-    // setting GPS accuracy
-    locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-    
-    // call to receive GPS coordinates (these coordinates are sent to the delegate defined above)
-    [locationManager startUpdatingLocation];
+    // updating labels
+    [self updateLabels];
 }
 
 
@@ -97,14 +103,94 @@ CLLocation *location;
         self.longitudeLabel.text = [NSString stringWithFormat:@"%.8f", location.coordinate.longitude];
         self.tagButton.hidden = NO;
     }
-    // labels text before getting a GPS coordinate
+    // labels text before getting a GPS coordinate or when dealing with error
     else
     {
+        // before getting a valid GPS coordinate
         self.messageLabel.text = @"Press the button to start";
         self.latitudeLabel.text = @"";
         self.longitudeLabel.text = @"";
         self.addressLabel.text = @"";
         self.tagButton.hidden = YES;
+        
+        // when getting a Core Location error
+        NSString *statusMessage;
+        
+        // error situation
+        if(lastLocationError != nil)
+        {
+            // error is user not enabling location services for this app
+            if([lastLocationError.domain isEqualToString:kCLErrorDomain] && lastLocationError.code == kCLErrorDenied)
+            {
+                statusMessage = @"Location services are disabled!";
+            }
+            // other errors
+            else
+            {
+                statusMessage = @"Error getting location";
+            }
+        }
+        
+        // when the user disables location services for the device
+        else if(![CLLocationManager locationServicesEnabled])
+        {
+            statusMessage = @"Location services are disabled!";
+        }
+        
+        // if the app is still trying to get GPS coordinates
+        else if(updatingLocation)
+        {
+            statusMessage = @"Searching ...";
+        }
+        
+        else
+        {
+            statusMessage = @"Press the button to start";
+        }
+        
+        // updating the message label
+        self.messageLabel.text = statusMessage;
+    }
+}
+
+
+/**
+ * starts the retrieval of GPS coordinates
+ */
+-(void)startLocationManager
+{
+    // checking that the device has location services enabled
+    if([CLLocationManager locationServicesEnabled])
+    {
+        // this view controller is set as delegate of Core Location
+        locationManager.delegate = self;
+        
+        // setting accuracy
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        
+        // updates location
+        [locationManager startUpdatingLocation];
+    
+        // setting ivar to true
+        updatingLocation = YES;
+    }
+}
+
+
+/**
+ * stops the retrieval of GPS coordinates (in case of error)
+ */
+-(void)stopLocationManager
+{
+    if(updatingLocation)
+    {
+        // stopping updating location
+        [locationManager stopUpdatingLocation];
+        
+        locationManager.delegate = nil;
+        
+        // turns the ivar to no (meaning we're not updating location anymore)
+        updatingLocation = NO;
     }
 }
 
@@ -115,12 +201,32 @@ CLLocation *location;
 {
     // prints the error
     NSLog(@"Did fail with error: %@", error);
+    
+    // when the app can't find immediatly a GPS location it will keep trying (return allows to exit this method); more serious errors are dealt below
+    if(error.code == kCLErrorLocationUnknown)
+    {
+        return;
+    }
+    
+    // here we deal with more serious errors
+    
+    // stopping the retrieval of GPS coordinates
+    [self stopLocationManager];
+    
+    // storing the error in the ivar
+    lastLocationError = error;
+    
+    // updating the labels for the error situation
+    [self updateLabels];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     // prints new location
     NSLog(@"Did update location: %@", newLocation);
+    
+    // in case we had a previous error we need to clear it because now there's sucess getting GPS coordinates
+    lastLocationError = nil;
     
     // storing the new location
     location = newLocation;
