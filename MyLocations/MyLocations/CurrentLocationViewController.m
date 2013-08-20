@@ -20,9 +20,15 @@
 // ivar responsible to give GPS coordinates
 CLLocationManager *locationManager;
 
+// ivar to store location
+CLLocation *location;
+
 - (void)viewDidLoad
 {
-    [super viewDidLoad];	
+    [super viewDidLoad];
+    
+    // this needs to called in order to present proper text in the labels when there's still no GPS coordinates
+	[self updateLabels];
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,6 +83,32 @@ CLLocationManager *locationManager;
 }
 
 
+/**
+ * updates screen labels with the location stored in the ivar
+ */
+-(void)updateLabels
+{
+    // only updates if location is valid
+    if(location != nil)
+    {
+        self.messageLabel.text = @"GPS coordinates";
+        // for both latitude and longitude we'll accept 8 decimal numbers
+        self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", location.coordinate.latitude];
+        self.longitudeLabel.text = [NSString stringWithFormat:@"%.8f", location.coordinate.longitude];
+        self.tagButton.hidden = NO;
+    }
+    // labels text before getting a GPS coordinate
+    else
+    {
+        self.messageLabel.text = @"Press the button to start";
+        self.latitudeLabel.text = @"";
+        self.longitudeLabel.text = @"";
+        self.addressLabel.text = @"";
+        self.tagButton.hidden = YES;
+    }
+}
+
+
 #pragma  mark - CLLocationManagerDelegate
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
@@ -89,6 +121,12 @@ CLLocationManager *locationManager;
 {
     // prints new location
     NSLog(@"Did update location: %@", newLocation);
+    
+    // storing the new location
+    location = newLocation;
+    
+    // updating screen labels
+    [self updateLabels];
 }
 
 @end
