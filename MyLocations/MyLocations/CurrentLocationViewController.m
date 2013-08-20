@@ -79,16 +79,28 @@ NSError *lastLocationError;
 #pragma mark - instance methods
 
 /**
- * gets current GPS location
+ * gets current GPS location (if the app is not updating location) or stops getting GPS coordinates (if the app is updating)
  */
 -(IBAction)getLocation:(id)sender
 {
-    // starting location manager
-    [self startLocationManager];
+    // if the app is currently getting a location, pressing this button should stop the updating process
+    if(updatingLocation)
+    {
+        [self stopLocationManager];
+    }
     
-    // updating labels
+    // if the app is not updating, pressing the button should start the update process
+    else
+    {
+        // "clearing" previous location and location error
+        location = nil;
+        lastLocationError = nil;
+        
+        [self startLocationManager];
+    }
+    
+    // no matter what the app is doing, labels and the get button are updated accordingly
     [self updateLabels];
-    
     [self configureGetButton];
 }
 
