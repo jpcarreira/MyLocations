@@ -24,6 +24,7 @@
 		6266A3E017C2838400B53753 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 6266A3DF17C2838400B53753 /* second.png */; };
 		6266A3E217C2838400B53753 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6266A3E117C2838400B53753 /* second@2x.png */; };
 		6266A3E917C2BEDA00B53753 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6266A3E817C2BEDA00B53753 /* CoreLocation.framework */; };
+		62BBC05017C51A3D0023D14A /* LocationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BBC04F17C51A3D0023D14A /* LocationDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,8 @@
 		6266A3DF17C2838400B53753 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		6266A3E117C2838400B53753 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		6266A3E817C2BEDA00B53753 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		62BBC04E17C51A3D0023D14A /* LocationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationDetailsViewController.h; sourceTree = "<group>"; };
+		62BBC04F17C51A3D0023D14A /* LocationDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationDetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,8 @@
 				6266A3DF17C2838400B53753 /* second.png */,
 				6266A3E117C2838400B53753 /* second@2x.png */,
 				6266A3C117C2838400B53753 /* Supporting Files */,
+				62BBC04E17C51A3D0023D14A /* LocationDetailsViewController.h */,
+				62BBC04F17C51A3D0023D14A /* LocationDetailsViewController.m */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 				6266A3CB17C2838400B53753 /* AppDelegate.m in Sources */,
 				6266A3D717C2838400B53753 /* CurrentLocationViewController.m in Sources */,
 				6266A3DE17C2838400B53753 /* SecondViewController.m in Sources */,
+				62BBC05017C51A3D0023D14A /* LocationDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
