@@ -17,6 +17,17 @@
 @synthesize descriptionTextView, categoryLabel, latitudeLabel, longitudeLabel, addressLabel, dateLabel;
 
 
+# pragma mark - instance methods
+
+/**
+ * closes the screen
+ */
+-(void)closeScreen
+{
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 # pragma mark - IBActions
 
 /**
@@ -24,7 +35,8 @@
  */
 -(IBAction)done:(id)sender
 {
-    
+    // calling close screen
+    [self closeScreen];
 }
 
 
@@ -33,7 +45,8 @@
  */
 -(IBAction)cancel:(id)sender
 {
-    
+    // calling close screen
+    [self closeScreen];
 }
 
 @end
