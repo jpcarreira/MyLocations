@@ -16,12 +16,33 @@
 
 @synthesize descriptionTextView, categoryLabel, latitudeLabel, longitudeLabel, addressLabel, dateLabel, coordinate, placemark;
 
+// ivar for user's description
+NSString *descriptionText;
+
+
+# pragma mark - inits
+
+/**
+ * init with coder
+ */
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    if((self = [super initWithCoder:aDecoder]))
+    {
+        descriptionText = @"";
+    }
+    return self;
+}
+
 
 # pragma mark - standard table view controller methods
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // updating the text view text
+    self.descriptionTextView.text = descriptionText;
     
     // updating screen labels
     self.descriptionTextView.text = @"";
@@ -100,6 +121,9 @@
  */
 -(IBAction)done:(id)sender
 {
+    // testing description text
+    NSLog(@"DESCRIPTION: %@", descriptionText);
+    
     // calling close screen
     [self closeScreen];
 }
@@ -160,5 +184,24 @@
         return 44;
     }
 }
+
+
+#pragma mark - UITextViewDelegate
+
+
+- (BOOL)textView:(UITextView *)theTextView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    // updating the ivar whenever the user inputs text
+    descriptionText = [theTextView.text stringByReplacingCharactersInRange:range withString:text];
+    return YES;
+}
+
+
+- (void)textViewDidEndEditing:(UITextView *)theTextView
+{
+    descriptionText = theTextView.text;
+}
+
+
 
 @end

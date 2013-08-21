@@ -11,7 +11,8 @@
 // deprecated since added the below import to MyLocations-Prefix.pch
 //#import <CoreLocation/CoreLocation.h>
 
-@interface LocationDetailsViewController : UITableViewController
+// conforming with UITextViewDelegate for user's description
+@interface LocationDetailsViewController : UITableViewController<UITextViewDelegate>
 
 // text view to enter location description
 @property (nonatomic, strong) IBOutlet UITextView *descriptionTextView;
