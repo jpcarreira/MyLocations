@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+// import needed to work with Core Location Framework
+// deprecated since added the below import to MyLocations-Prefix.pch
+//#import <CoreLocation/CoreLocation.h>
 
 @interface LocationDetailsViewController : UITableViewController
 
@@ -27,6 +30,12 @@
 
 // date label
 @property (nonatomic, strong) IBOutlet UILabel *dateLabel;
+
+// struct containing latitude and longitude
+@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
+
+// object containing the address for reverse geocoding
+@property (nonatomic, strong) CLPlacemark *placemark;
 
 // done button in the navigation bar
 -(IBAction)done:(id)sender;

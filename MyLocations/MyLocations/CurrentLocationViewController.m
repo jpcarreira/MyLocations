@@ -8,6 +8,8 @@
 //
 
 #import "CurrentLocationViewController.h"
+// import needed for segue
+#import "LocationDetailsViewController.h"
 
 @interface CurrentLocationViewController ()
 
@@ -71,6 +73,28 @@ NSError *lastGeocodingError;
     [super viewDidUnload];
 }
 
+
+/**
+ * prepareForSegue
+ */
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // identifying the segue that corresponds to press the "Tag Location" button
+    if([segue.identifier isEqualToString:@"TagLocation"])
+    {
+        // getting the navigation controller following the segue
+        UINavigationController *navigationController = segue.destinationViewController;
+        
+        // getting the LocationDetailsViewController of the navigation controller
+        LocationDetailsViewController *controller = (LocationDetailsViewController *)navigationController.topViewController;
+        
+        // coordinate property in LocationDetailsViewController is hold the coordinates obtained here
+        controller.coordinate = location.coordinate;
+        
+        // same for placemark
+        controller.placemark = placemark;
+    }
+}
 
 # pragma mark - inits
 

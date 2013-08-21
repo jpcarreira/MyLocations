@@ -9,7 +9,8 @@
 
 #import <UIKit/UIKit.h>
 // import needed to work with Core Location Framework
-#import <CoreLocation/CoreLocation.h>
+// (deprecated after editing the prefix pch file
+//#import <CoreLocation/CoreLocation.h>
 
 // Core Location works with a delegate therefore we need to make this view controller to conform with the CLLocationManagerDelegate protocol
 @interface CurrentLocationViewController : UIViewController<CLLocationManagerDelegate>

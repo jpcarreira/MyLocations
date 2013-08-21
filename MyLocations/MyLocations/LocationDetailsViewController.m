@@ -14,8 +14,35 @@
 
 @implementation LocationDetailsViewController
 
-@synthesize descriptionTextView, categoryLabel, latitudeLabel, longitudeLabel, addressLabel, dateLabel;
+@synthesize descriptionTextView, categoryLabel, latitudeLabel, longitudeLabel, addressLabel, dateLabel, coordinate, placemark;
 
+
+# pragma mark - standard table view controller methods
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // updating screen labels
+    self.descriptionTextView.text = @"";
+    self.categoryLabel.text = @"";
+    self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", self.coordinate.latitude];
+    self.longitudeLabel.text = [NSString stringWithFormat:@"%.8f", self.coordinate.longitude];
+    
+    // checking if placemark has a valid address
+    if(self.placemark != nil)
+    {
+        // calling instance method to get a string address from CLPlacemark
+        self.addressLabel.text = [self stringFromPlacemark:self.placemark];
+    }
+    else
+    {
+        self.addressLabel.text = @"No address found";
+    }
+    
+    // calling instance method to get a string date from NSDate
+    self.dateLabel.text = [self formatDate:[NSDate date]];
+}
 
 # pragma mark - instance methods
 
@@ -27,6 +54,44 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+/**
+ * gets an address string from a placemark object
+ */
+-(NSString *)stringFromPlacemark:(CLPlacemark *)thePlacemark
+{
+    return [NSString stringWithFormat:@"%@ %@\n%@ %@ %@\n%@",
+            // house number
+            thePlacemark.subThoroughfare,
+            // street name
+            thePlacemark.thoroughfare,
+            // city
+            thePlacemark.locality,
+            // state / province
+            thePlacemark.administrativeArea,
+            // zip code / postal code
+            thePlacemark.postalCode,
+            // country
+            thePlacemark.country];
+}
+
+
+/**
+ * gets a date string from a NSDate object
+ */
+-(NSString *)formatDate:(NSDate *)theDate
+{
+    // creating the memory-expensive NSDateFormatter with "lazy loading"
+    // static makes the object persist even when this method ends
+    static NSDateFormatter *formatter = nil;
+    // this condition is necessary due to the static declaration above
+    if(formatter == nil)
+    {
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateStyle:NSDateFormatterMediumStyle];
+        [formatter setTimeStyle:NSDateFormatterShortStyle];
+    }
+    return [formatter stringFromDate:theDate];
+}
 
 # pragma mark - IBActions
 
@@ -47,6 +112,53 @@
 {
     // calling close screen
     [self closeScreen];
+}
+
+
+# pragma mark - UITableViewDelegate
+
+/**
+ * cell's height
+ */
+-(CGFloat)tableView:(UITableView *)theTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // height for description cell
+    if(indexPath.section == 0 && indexPath.row == 0)
+    {
+        return 88;
+    }
+    
+    // height for address cell
+    if(indexPath.section == 2 && indexPath.row == 2)
+    {
+        // CGRech is a struct that defines a rectangle
+        // CGRectMake takes 4 parameters: X coordinate, Y coordinate, width and height
+        // X and Y are the same as set on the storyboard; heigth is big enough to handle a lot of text
+        CGRect rect = CGRectMake(100, 10, 190, 1000);
+        
+        // resizing the label to the defined rectangle
+        // it automatically word-wraps any text
+        self.addressLabel.frame = rect;
+        
+        // same as "size to fit content" from the storyboard
+        [self.addressLabel sizeToFit];
+        
+        // the rect height is set the current "size to fit" address label
+        // now we have 100-10-190 and heigth exactly to fit content
+        rect.size.height = self.addressLabel.frame.size.height;
+        
+        // with the height correctly calculated we set the final frame
+        self.addressLabel.frame = rect;
+        
+        // adding a 10 point margin (10 top, 10 down)
+        return (self.addressLabel.frame.size.height + 20);
+    }
+    
+    // height for other rows
+    else
+    {
+        return 44;
+    }
 }
 
 @end
