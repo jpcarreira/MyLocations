@@ -233,7 +233,7 @@ NSError *lastGeocodingError;
  */
 -(NSString *)stringFromPlacemark:(CLPlacemark *)thePlacemark
 {
-    return [NSString stringWithFormat:@"%@ %@\n%@ %@ %@",
+    return [NSString stringWithFormat:@"%@ %@\n%@ %@ %@\n%@",
             // house number
             thePlacemark.subThoroughfare,
             // street name
@@ -243,7 +243,9 @@ NSError *lastGeocodingError;
             // state / province
             thePlacemark.administrativeArea,
             // zip code / postal code
-            thePlacemark.postalCode];
+            thePlacemark.postalCode,
+            // country
+            thePlacemark.country];
 }
 
 /**
