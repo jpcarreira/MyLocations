@@ -111,6 +111,10 @@ NSError *lastGeocodingError;
         location = nil;
         lastLocationError = nil;
         
+        // "clearing" previous reverse geocoding ivars
+        placemark = nil;
+        lastGeocodingError = nil;
+        
         [self startLocationManager];
     }
     
@@ -150,6 +154,28 @@ NSError *lastGeocodingError;
         self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", location.coordinate.latitude];
         self.longitudeLabel.text = [NSString stringWithFormat:@"%.8f", location.coordinate.longitude];
         self.tagButton.hidden = NO;
+        
+        // updating the address label with reverse geocoding data
+        if(placemark != nil)
+        {
+            // calling instance method to get an address string from a placemark
+            self.addressLabel.text = [self stringFromPlacemark:placemark];
+        }
+        // when the app is still performing reverse geocoding
+        else if(performingReverseGeocoding)
+        {
+            self.addressLabel.text = @"Searching for address ...";
+        }
+        // when reverse geocoding got an error
+        else if(lastGeocodingError != nil)
+        {
+            self.addressLabel.text = @"Error getting an address";
+        }
+        // no address found
+        else
+        {
+            self.addressLabel.text = @"No address found";
+        }
     }
     // labels text before getting a GPS coordinate or when dealing with error
     else
@@ -201,6 +227,24 @@ NSError *lastGeocodingError;
     }
 }
 
+
+/**
+ * gets an address string from a placemark object
+ */
+-(NSString *)stringFromPlacemark:(CLPlacemark *)thePlacemark
+{
+    return [NSString stringWithFormat:@"%@ %@\n%@ %@ %@",
+            // house number
+            thePlacemark.subThoroughfare,
+            // street name
+            thePlacemark.thoroughfare,
+            // city
+            thePlacemark.locality,
+            // state / province
+            thePlacemark.administrativeArea,
+            // zip code / postal code
+            thePlacemark.postalCode];
+}
 
 /**
  * starts the retrieval of GPS coordinates
