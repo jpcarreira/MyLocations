@@ -333,6 +333,14 @@ NSError *lastGeocodingError;
         return;
     }
     
+    // calculating the distance accuracy between the new reading and the previous one if there was any
+    // initial distance for the first distance is set to maximum possible
+    CLLocationDistance distance = MAXFLOAT;
+    if(location != nil)
+    {
+        distance = [newLocation distanceFromLocation:location];
+    }
+    
     // this condition evaluates that the new reading is more accurate than the previous one
     if(location == nil || location.horizontalAccuracy > newLocation.horizontalAccuracy)
     {
@@ -352,6 +360,14 @@ NSError *lastGeocodingError;
             [self stopLocationManager];
             
             [self configureGetButton];
+        
+            // if we haven't seen this location before (as it's > 0) we force another reverse geocoding event setting the flag to FALSE
+            // as we want the address for the final location, which is the most accurate and this way we force the reverse geocoding even if we already had a previou location
+            if(distance > 0)
+            {
+                performingReverseGeocoding = NO;
+            }
+            
         }
         
         // code to support reverse geocoding
@@ -391,6 +407,20 @@ NSError *lastGeocodingError;
                  [self updateLabels];
              }
              ];
+        }
+        
+        // if the distance is not significant and 10 seconds have already passed since the previous reading we'll accept that we won't get a better accuracy and stop the process of getting a new location
+        // this optimization is crutial for devices that get locations through wi-fi such as the iPod touch
+        else if (distance < 1.0)
+        {
+            NSTimeInterval timeInterval = [newLocation.timestamp timeIntervalSinceDate:location.timestamp];
+            if(timeInterval > 10)
+            {
+                NSLog(@"Force done!");
+                [self stopLocationManager];
+                [self updateLabels];
+                [self configureGetButton];
+            }
         }
     }
 }
