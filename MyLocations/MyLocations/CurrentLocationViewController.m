@@ -267,6 +267,12 @@ NSError *lastGeocodingError;
     
         // setting ivar to true
         updatingLocation = YES;
+        
+        // setting a 60-second time-out
+        // the OS will send a didTimeOut: message 60 seconds after startLocationManager was called
+        // this means we need to cancel this message in stopLocationManager
+        // the didTimeOut: can be found below
+        [self performSelector:@selector(didTimeOut:) withObject:nil afterDelay:60];
     }
 }
 
@@ -278,6 +284,9 @@ NSError *lastGeocodingError;
 {
     if(updatingLocation)
     {
+        // "calling-off" the 60-second timeout
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(didTimeOut:) object:nil];
+        
         // stopping updating location
         [locationManager stopUpdatingLocation];
         
@@ -288,6 +297,28 @@ NSError *lastGeocodingError;
     }
 }
 
+
+/**
+ * this is the timeout message that is sent after in startLocationManager
+ */
+-(void)didTimeOut:(id)obj
+{
+    NSLog(@"Time out...");
+    
+    if(location == nil)
+    {
+        // stopping the location manager
+        [self stopLocationManager];
+        
+        // creating an error object and giving it to the ivar
+        lastLocationError = [NSError errorWithDomain:@"MyLocationsErrorsDomain" code:1 userInfo:nil];
+        
+        // updating labels and configuring the getButton
+        // (we can update the labels directly as we created an error above and updateLabels is prepared to deal w/ an error object)
+        [self updateLabels];
+        [self configureGetButton];
+    }
+}
 
 #pragma  mark - CLLocationManagerDelegate
 
