@@ -24,6 +24,7 @@
 		6266A3E017C2838400B53753 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 6266A3DF17C2838400B53753 /* second.png */; };
 		6266A3E217C2838400B53753 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6266A3E117C2838400B53753 /* second@2x.png */; };
 		6266A3E917C2BEDA00B53753 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6266A3E817C2BEDA00B53753 /* CoreLocation.framework */; };
+		62B42C3617C65AA30088CA97 /* CategoryPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B42C3517C65AA30088CA97 /* CategoryPickerViewController.m */; };
 		62BBC05017C51A3D0023D14A /* LocationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BBC04F17C51A3D0023D14A /* LocationDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,8 @@
 		6266A3DF17C2838400B53753 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		6266A3E117C2838400B53753 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		6266A3E817C2BEDA00B53753 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		62B42C3417C65AA30088CA97 /* CategoryPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryPickerViewController.h; sourceTree = "<group>"; };
+		62B42C3517C65AA30088CA97 /* CategoryPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryPickerViewController.m; sourceTree = "<group>"; };
 		62BBC04E17C51A3D0023D14A /* LocationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationDetailsViewController.h; sourceTree = "<group>"; };
 		62BBC04F17C51A3D0023D14A /* LocationDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationDetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,6 +118,8 @@
 				6266A3DC17C2838400B53753 /* SecondViewController.h */,
 				6266A3DD17C2838400B53753 /* SecondViewController.m */,
 				6266A3C117C2838400B53753 /* Supporting Files */,
+				62B42C3417C65AA30088CA97 /* CategoryPickerViewController.h */,
+				62B42C3517C65AA30088CA97 /* CategoryPickerViewController.m */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				6266A3D717C2838400B53753 /* CurrentLocationViewController.m in Sources */,
 				6266A3DE17C2838400B53753 /* SecondViewController.m in Sources */,
 				62BBC05017C51A3D0023D14A /* LocationDetailsViewController.m in Sources */,
+				62B42C3617C65AA30088CA97 /* CategoryPickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
