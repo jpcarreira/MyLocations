@@ -10,9 +10,10 @@
 // import needed to work with Core Location Framework
 // deprecated since added the below import to MyLocations-Prefix.pch
 //#import <CoreLocation/CoreLocation.h>
+#import "CategoryPickerViewController.h"
 
 // conforming with UITextViewDelegate for user's description
-@interface LocationDetailsViewController : UITableViewController<UITextViewDelegate>
+@interface LocationDetailsViewController : UITableViewController<UITextViewDelegate, CategoryPickerViewControllerDelegate>
 
 // text view to enter location description
 @property (nonatomic, strong) IBOutlet UITextView *descriptionTextView;

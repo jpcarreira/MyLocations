@@ -7,6 +7,7 @@
 //
 
 #import "LocationDetailsViewController.h"
+//#import "CategoryPickerViewController.h"
 
 @interface LocationDetailsViewController ()
 
@@ -19,6 +20,9 @@
 // ivar for user's description
 NSString *descriptionText;
 
+// ivar to store category name
+NSString *categoryName;
+
 
 # pragma mark - inits
 
@@ -30,6 +34,7 @@ NSString *descriptionText;
     if((self = [super initWithCoder:aDecoder]))
     {
         descriptionText = @"";
+        categoryName = @"No Category";
     }
     return self;
 }
@@ -43,6 +48,9 @@ NSString *descriptionText;
     
     // updating the text view text
     self.descriptionTextView.text = descriptionText;
+    
+    // updating the category label
+    self.categoryLabel.text = categoryName;
     
     // updating screen labels
     self.descriptionTextView.text = @"";
@@ -63,6 +71,16 @@ NSString *descriptionText;
     
     // calling instance method to get a string date from NSDate
     self.dateLabel.text = [self formatDate:[NSDate date]];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"PickCategory"])
+    {
+        CategoryPickerViewController *controller = segue.destinationViewController;
+        controller.delegate = self;
+        controller.selectedCategoryName = categoryName;
+    }
 }
 
 # pragma mark - instance methods
@@ -200,6 +218,19 @@ NSString *descriptionText;
 - (void)textViewDidEndEditing:(UITextView *)theTextView
 {
     descriptionText = theTextView.text;
+}
+
+
+#pragma mark - CategoryPickerViewControllerDelegate
+
+-(void)categoryPicker:(CategoryPickerViewController *)picker didPickCategory:(NSString *)theCategoryName
+{
+    // updating the ivar and label
+    categoryName = theCategoryName;
+    self.categoryLabel.text = categoryName;
+    
+    // closing the category picker screen
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
