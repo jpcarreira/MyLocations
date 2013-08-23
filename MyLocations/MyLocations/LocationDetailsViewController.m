@@ -8,6 +8,7 @@
 
 #import "LocationDetailsViewController.h"
 //#import "CategoryPickerViewController.h"
+#import "HudView.h"
 
 @interface LocationDetailsViewController ()
 
@@ -174,11 +175,13 @@ NSString *categoryName;
  */
 -(IBAction)done:(id)sender
 {
-    // testing description text
-    NSLog(@"DESCRIPTION: %@", descriptionText);
+    // calling the hud when pressing the done button and setting it's text
+    HudView *hudView = [HudView hudInView:self.navigationController.view animated:YES];
+    hudView.text = @"Tagged!";
+    
     
     // calling close screen
-    [self closeScreen];
+    //[self closeScreen];
 }
 
 
