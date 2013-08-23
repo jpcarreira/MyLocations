@@ -45,7 +45,7 @@ NSString *categoryName;
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    
+        
     // updating the text view text
     self.descriptionTextView.text = descriptionText;
     
@@ -71,6 +71,12 @@ NSString *categoryName;
     
     // calling instance method to get a string date from NSDate
     self.dateLabel.text = [self formatDate:[NSDate date]];
+}
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -159,6 +165,7 @@ NSString *categoryName;
 
 # pragma mark - UITableViewDelegate
 
+
 /**
  * cell's height
  */
@@ -204,6 +211,37 @@ NSString *categoryName;
 }
 
 
+/**
+ * using this method to decide which cells are "tapable"
+ */
+-(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // first two sections are "tapable"
+    if(indexPath.section == 0 || indexPath.section == 1)
+    {
+        return indexPath;
+    }
+    
+    // the third section is "read-only" so user can't tap
+    else
+    {
+        return nil;
+    }
+}
+
+
+/**
+ * using this method to launch keyboard once the description textview cell's is tapped
+ */
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section == 0 && indexPath.row == 0)
+    {
+        [self.descriptionTextView becomeFirstResponder];
+    }
+}
+
+
 #pragma mark - UITextViewDelegate
 
 
@@ -230,7 +268,7 @@ NSString *categoryName;
     self.categoryLabel.text = categoryName;
     
     // closing the category picker screen
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

@@ -45,6 +45,13 @@ NSIndexPath *selectedIndexPath;
                   nil];
 }
 
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return (toInterfaceOrientation = UIInterfaceOrientationPortrait);
