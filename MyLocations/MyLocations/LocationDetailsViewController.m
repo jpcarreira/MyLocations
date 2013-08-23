@@ -71,6 +71,12 @@ NSString *categoryName;
     
     // calling instance method to get a string date from NSDate
     self.dateLabel.text = [self formatDate:[NSDate date]];
+    
+    // dismissing the keyboard if user tap elsewhere but the TextView cell
+    // hideKeyboard is implemented in this .m file
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+    gestureRecognizer.cancelsTouchesInView = NO;
+    [self.tableView addGestureRecognizer:gestureRecognizer];
 }
 
 
@@ -137,6 +143,29 @@ NSString *categoryName;
     }
     return [formatter stringFromDate:theDate];
 }
+
+
+/**
+ * dismisses the keyboard unless the tap occurs in the cell containing the TextView
+ */
+-(void)hideKeyboard:(UIGestureRecognizer *)gestureRecognizer
+{
+    // getting a precise point from the screen
+    CGPoint point = [gestureRecognizer locationInView:self.tableView];
+    
+    // getting the corresponding indexpath
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
+    
+    // not dismissing the keyboard if the cell is the one with the TextView
+    if(indexPath != nil && indexPath.section == 0 && indexPath.row == 0)
+    {
+        return;
+    }
+    
+    // the keyboard is the first responder
+    [self.descriptionTextView resignFirstResponder];
+}
+
 
 # pragma mark - IBActions
 
