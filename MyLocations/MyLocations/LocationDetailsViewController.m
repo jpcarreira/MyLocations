@@ -179,7 +179,6 @@ NSString *categoryName;
     HudView *hudView = [HudView hudInView:self.navigationController.view animated:YES];
     hudView.text = @"Tagged!";
     
-    
     // calling close screen
     //[self closeScreen];
 }
