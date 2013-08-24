@@ -42,6 +42,27 @@
     // setting up a 75% opaque black color
     [[UIColor colorWithWhite:0.0f alpha:0.75] setFill];
     [roundedRect fill];
+    
+    // adding checkmark image
+    UIImage *image = [UIImage imageNamed:@"Checkmark"];
+    
+    // setting the image to show in the center of the hud
+    CGPoint imagePoint = CGPointMake(
+        self.center.x - roundf(image.size.width / 2.0f),
+        self.center.y - roundf(image.size.height / 2.0f) - boxHeight / 8.0f
+    );
+    [image drawAtPoint:imagePoint];
+    
+    // setting the text in the hud
+    [[UIColor whiteColor] set];
+    UIFont *font = [UIFont boldSystemFontOfSize:16.0f];
+    CGSize textSize = [self.text sizeWithFont:font];
+    CGPoint textPoint = CGPointMake(
+        self.center.x - roundf(textSize.width / 2.0f),
+        self.center.y - roundf(textSize.height / 2.0f) + boxHeight / 4.0f
+    );
+    [self.text drawAtPoint:textPoint withFont:font];
+    
 }
 
 #pragma mark - class methods

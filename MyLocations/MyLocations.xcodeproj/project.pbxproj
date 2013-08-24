@@ -27,6 +27,8 @@
 		62B2157117C820100069D437 /* HudView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B2157017C820100069D437 /* HudView.m */; };
 		62B42C3617C65AA30088CA97 /* CategoryPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B42C3517C65AA30088CA97 /* CategoryPickerViewController.m */; };
 		62BBC05017C51A3D0023D14A /* LocationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BBC04F17C51A3D0023D14A /* LocationDetailsViewController.m */; };
+		62DC402217C90C6B00AD4BFB /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DC402017C90C6B00AD4BFB /* Checkmark.png */; };
+		62DC402317C90C6B00AD4BFB /* Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DC402117C90C6B00AD4BFB /* Checkmark@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		62B42C3517C65AA30088CA97 /* CategoryPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryPickerViewController.m; sourceTree = "<group>"; };
 		62BBC04E17C51A3D0023D14A /* LocationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationDetailsViewController.h; sourceTree = "<group>"; };
 		62BBC04F17C51A3D0023D14A /* LocationDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationDetailsViewController.m; sourceTree = "<group>"; };
+		62DC402017C90C6B00AD4BFB /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Checkmark.png; path = "../../../The iOS Apprentice Bundle/Chapter 3 - MyLocations/Resources/Hud Images/Checkmark.png"; sourceTree = "<group>"; };
+		62DC402117C90C6B00AD4BFB /* Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Checkmark@2x.png"; path = "../../../The iOS Apprentice Bundle/Chapter 3 - MyLocations/Resources/Hud Images/Checkmark@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +136,7 @@
 		6266A3C117C2838400B53753 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				62DC402417C90C8900AD4BFB /* Hud images */,
 				6266A3C217C2838400B53753 /* MyLocations-Info.plist */,
 				6266A3C317C2838400B53753 /* InfoPlist.strings */,
 				6266A3C617C2838400B53753 /* main.m */,
@@ -141,6 +146,15 @@
 				6266A3D017C2838400B53753 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		62DC402417C90C8900AD4BFB /* Hud images */ = {
+			isa = PBXGroup;
+			children = (
+				62DC402017C90C6B00AD4BFB /* Checkmark.png */,
+				62DC402117C90C6B00AD4BFB /* Checkmark@2x.png */,
+			);
+			name = "Hud images";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +217,8 @@
 				6266A3DB17C2838400B53753 /* first@2x.png in Resources */,
 				6266A3E017C2838400B53753 /* second.png in Resources */,
 				6266A3E217C2838400B53753 /* second@2x.png in Resources */,
+				62DC402217C90C6B00AD4BFB /* Checkmark.png in Resources */,
+				62DC402317C90C6B00AD4BFB /* Checkmark@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
