@@ -180,7 +180,8 @@ NSString *categoryName;
     hudView.text = @"Tagged!";
     
     // calling close screen
-    //[self closeScreen];
+    // we can't just call closeScreen as we have to waint until the animation finishes; as the animation takes 0.3 seconds we give it another 0.3 and set the delay to 0.6
+    [self performSelector:@selector(closeScreen) withObject:nil afterDelay:0.6];
 }
 
 
