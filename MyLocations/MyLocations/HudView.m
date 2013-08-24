@@ -86,7 +86,39 @@
     // setting backgroung color (just for test purpose to see the area occupied by the hud; test color (50% transparent red)
     //hudView.backgroundColor = [UIColor colorWithRed:1.0f green:0 blue:0 alpha:0.5f];
     
+    // adding animation to hud by calling our instance method
+    [hudView showAnimated:YES];
+    
     return hudView;
+}
+
+
+/**
+ * hudview animation
+ */
+-(void)showAnimated:(BOOL)animated
+{
+    // any animation consists in 4 steps
+    if(animated)
+    {
+        // step 1: status before animation starts
+        // view fully transparent
+        self.alpha = 0.0f;
+        // view initially stretched out
+        self.transform = CGAffineTransformMakeScale(1.3f, 1.3f);
+        
+        // step 2: calling the animation and setting its duration attribute
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.3];
+        
+        // step 3:
+        // view is fully opaque
+        self.alpha = 1.0f;
+        // scaling back to normal
+        self.transform = CGAffineTransformIdentity;
+        
+        [UIView commitAnimations];
+    }
 }
 
 @end
