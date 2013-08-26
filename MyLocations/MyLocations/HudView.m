@@ -65,34 +65,6 @@
     
 }
 
-#pragma mark - class methods
-
-/**
- * Convenience constructor
- * (displays HUD in screen)
- */
-+(HudView *)hudInView:(UIView *)view animated:(BOOL)animated
-{
-    // being a convenience construtor the first thing we need is to instantiate HudView
-    HudView *hudView = [[HudView alloc] initWithFrame:view.bounds];
-    hudView.opaque = NO;
-    
-    // putting the HudView on top of the view passed as parameter
-    [view addSubview:hudView];
-    
-    // disabling user interaction with the view that calls this hud
-    view.userInteractionEnabled = NO;
-    
-    // setting backgroung color (just for test purpose to see the area occupied by the hud; test color (50% transparent red)
-    //hudView.backgroundColor = [UIColor colorWithRed:1.0f green:0 blue:0 alpha:0.5f];
-    
-    // adding animation to hud by calling our instance method
-    [hudView showAnimated:YES];
-    
-    return hudView;
-}
-
-
 /**
  * hudview animation
  */
@@ -119,6 +91,34 @@
         
         [UIView commitAnimations];
     }
+}
+
+
+#pragma mark - class methods
+
+/**
+ * Convenience constructor
+ * (displays HUD in screen)
+ */
++(HudView *)hudInView:(UIView *)view animated:(BOOL)animated
+{
+    // being a convenience construtor the first thing we need is to instantiate HudView
+    HudView *hudView = [[HudView alloc] initWithFrame:view.bounds];
+    hudView.opaque = NO;
+    
+    // putting the HudView on top of the view passed as parameter
+    [view addSubview:hudView];
+    
+    // disabling user interaction with the view that calls this hud
+    view.userInteractionEnabled = NO;
+    
+    // setting backgroung color (just for test purpose to see the area occupied by the hud; test color (50% transparent red)
+    //hudView.backgroundColor = [UIColor colorWithRed:1.0f green:0 blue:0 alpha:0.5f];
+    
+    // adding animation to hud by calling our instance method
+    [hudView showAnimated:YES];
+    
+    return hudView;
 }
 
 @end

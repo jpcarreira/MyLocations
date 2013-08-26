@@ -1,5 +1,8 @@
+/**
+ * Use case diagram
+ */
+
 @startuml Diagrams/use_case.png
-title <b>Use Case Diagram</b>
 left to right direction
 User --> (obtain GPS location \nand physical address)
 (obtain GPS location \nand physical address) .> (save location) : extends 
@@ -7,3 +10,116 @@ User --> (obtain GPS location \nand physical address)
 (obtain GPS location \nand physical address) .> (add text description) : extends
 (obtain GPS location \nand physical address) .> (add photo) : extends   
 @enduml 
+
+
+
+/**
+ * Class diagram
+ */
+
+@startuml Diagrams/class_diagram.png
+
+CurrentLocationViewController -- LocationDetailsViewController
+LocationDetailsViewController -- CategoryPickerViewController
+LocationDetailsViewController -- HudView
+
+class CurrentLocationViewController<<CLLocationManagerDelegate>>{
+	+UILabel *messageLabel
+	+UILabel *latitudeLabel
+	+UILabel *longitudeLabel
+	+UILabel *addressLabel
+	+UIButton *tagButton
+	+UIButton *getButton
+	-CLLocationManager *locationManager
+	-CLLocation *location
+	-BOOL updatingLocation
+	-NSError *lastLocationError
+	-CLGeocoder *geocoder
+	-CLPlacemark *placemark
+	-BOOL performingReverseGeocoding
+	-NSError *lastGeocodingError
+	__
+	+(IBAction)getLocation:(id)sender
+	-(void)viewDidLoad
+	-(void)didReceiveMemoryWarning
+	-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation *)toInterfaceOrientation
+	-(void)viewDidUnload
+	-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+	.. <b>inits</b> ..
+	-(id)initWithCoder:(NSCoder *)aDecoder
+	.. <b>instance methods</b> ..
+	-(void)configureGetButton
+	-(void)updateLabels
+	-(NSString *)stringFromPlacemark:(CLPlacemark *)thePlacemark
+	-(void)startLocationManager
+	-(void)stopLocationManager
+	-(void)didTimeOut:(id)obj
+	.. <b>CLLocationManager delegate methods</b> ..
+	-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+	-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+}
+
+class LocationDetailsViewController<<UITextViewDelegate, CategoryPickerViewControllerDelegate>>{
+	+UITextView *descriptionTextView
+	+UILabel *categoryLabel
+	+UILabel *latitudeLabel
+	+UILabel *longitudeLabel
+	+UILabel *addressLabel
+	+UILabel *dateLabel
+	+CLLocationCoordinate2D coordinate
+	+CLPlacemark *placemark
+	-NSString *descriptionText
+	-NString *categoryName
+	__
+	+(IBAction)done:(id)sender
+	+(IBAction)cancel:(id)sender
+	-(id)initWithCoder:(NSCoder *)aDecoder
+	-(void)viewDidLoad
+	-(void)didReceiveMemoryWarning
+	-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+	.. <b>instance methods</b> ..
+	-(void)closeScreen
+	-(NSString *)stringFromPlacemark:(CLPlacemark *)thePlacemark
+	-(NSString *)formatDate:(NSDate *)theDate
+	-(void)hideKeyboard:(UIGestureRecognizer *)gestureRecognizer
+	.. <b>UITableView delegate methods </b> ..
+	-(CGFloat)tableView:(UITableView *)theTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+	-(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+	-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+	.. <b>UITextView delegate methods </b> ..
+	-(BOOL)textView:(UITextView *)theTextView shouldChangeTextInRange:(NSRange *)range replacementText:(NSString *)text
+	-(void)textViewDidEndEditing:(UITextView *)theTextView
+	-(void)categoryPicker:(CategoryPickerViewController *)picker didPickCategory:(NSString *)theCategoryName
+}
+
+class CategoryPickerViewController{
+	+id<CategoryPickerViewControllerDelegate> delegate
+	+NSString *selectedCategoryName
+	-NSArray *categories
+	-NSIndexPath *selectedIndexPath
+	__
+	+(void)categoryPicker:(CategoryPickerViewController *)picker didPickCategory:(NSString *)categoryName
+	-(void)viewDidLoad
+	-(void)didReceiveMemoryWarning 
+	-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation *)toInterfaceOrientation
+	.. <b>TableView datasource</b> .. 
+	-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+	-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+	-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+	.. <b>TableView delegate</b> ..
+	-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+}
+
+class HudView{
+	+NSString *text
+	__
+	.. <b>class method</b> ..
+	+(HudView *)hudInView:(UIView *)view animated:(BOOL)animated
+	__
+	-(void)drawRect:(CGRect)rect
+	-(void)showAnimated:(BOOL)animated
+}
+
+@enduml
+
+

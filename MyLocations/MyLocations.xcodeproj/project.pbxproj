@@ -113,10 +113,14 @@
 			children = (
 				6266A3C917C2838400B53753 /* AppDelegate.h */,
 				6266A3CA17C2838400B53753 /* AppDelegate.m */,
+				62B42C3417C65AA30088CA97 /* CategoryPickerViewController.h */,
+				62B42C3517C65AA30088CA97 /* CategoryPickerViewController.m */,
 				6266A3D517C2838400B53753 /* CurrentLocationViewController.h */,
 				6266A3D617C2838400B53753 /* CurrentLocationViewController.m */,
 				6266A3D817C2838400B53753 /* first.png */,
 				6266A3DA17C2838400B53753 /* first@2x.png */,
+				62B2156F17C820100069D437 /* HudView.h */,
+				62B2157017C820100069D437 /* HudView.m */,
 				62BBC04E17C51A3D0023D14A /* LocationDetailsViewController.h */,
 				62BBC04F17C51A3D0023D14A /* LocationDetailsViewController.m */,
 				6266A3D217C2838400B53753 /* MainStoryboard.storyboard */,
@@ -125,10 +129,6 @@
 				6266A3DC17C2838400B53753 /* SecondViewController.h */,
 				6266A3DD17C2838400B53753 /* SecondViewController.m */,
 				6266A3C117C2838400B53753 /* Supporting Files */,
-				62B42C3417C65AA30088CA97 /* CategoryPickerViewController.h */,
-				62B42C3517C65AA30088CA97 /* CategoryPickerViewController.m */,
-				62B2156F17C820100069D437 /* HudView.h */,
-				62B2157017C820100069D437 /* HudView.m */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
