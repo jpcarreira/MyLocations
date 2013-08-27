@@ -8,7 +8,17 @@
 
 #import "AppDelegate.h"
 
+// extending the class to work with CoreData
+@interface AppDelegate()
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@end
+
 @implementation AppDelegate
+
+// synthesizing the extended properties for CoreData
+@synthesize managedObjectContext, managedObjectModel, persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -41,6 +51,67 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+#pragma mark - Core Data
+
+-(NSManagedObjectModel *)managedObjectModel
+{
+    if(managedObjectModel == nil)
+    {
+        NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"DataModel" ofType:@"momd"];
+        NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
+        managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    }
+    return managedObjectModel;
+}
+
+
+-(NSString *)documentsDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    return documentsDirectory;
+}
+
+
+-(NSString *)dataStorePath
+{
+    return [[self documentsDirectory] stringByAppendingPathComponent:@"DataStore.sqlite"];
+}
+
+
+-(NSPersistentStoreCoordinator *)persistentStoreCoordinator
+{
+    if(persistentStoreCoordinator == nil)
+    {
+        NSURL *storeURL = [NSURL fileURLWithPath:[self dataStorePath]];
+        persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
+        
+        NSError *error;
+        if(![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
+        {
+            NSLog(@"Error adding persistence store %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+    return persistentStoreCoordinator;
+}
+
+
+-(NSManagedObjectContext *) managedObjectContext
+{
+    if(managedObjectContext == nil)
+    {
+        NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
+        if(coordinator != nil)
+        {
+            managedObjectContext = [[NSManagedObjectContext alloc] init];
+            [managedObjectContext setPersistentStoreCoordinator:coordinator];
+        }
+    }
+    return managedObjectContext;
 }
 
 @end
