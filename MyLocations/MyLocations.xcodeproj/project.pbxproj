@@ -27,6 +27,9 @@
 		62B2157117C820100069D437 /* HudView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B2157017C820100069D437 /* HudView.m */; };
 		62B42C3617C65AA30088CA97 /* CategoryPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B42C3517C65AA30088CA97 /* CategoryPickerViewController.m */; };
 		62BBC05017C51A3D0023D14A /* LocationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BBC04F17C51A3D0023D14A /* LocationDetailsViewController.m */; };
+		62BCFA7A17CD3A7200E47106 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BCFA7917CD3A7200E47106 /* CoreData.framework */; };
+		62BCFA7D17CD3AAC00E47106 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62BCFA7B17CD3AAC00E47106 /* DataModel.xcdatamodeld */; };
+		62BCFA8017CD3E2C00E47106 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BCFA7F17CD3E2C00E47106 /* Location.m */; };
 		62DC402217C90C6B00AD4BFB /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DC402017C90C6B00AD4BFB /* Checkmark.png */; };
 		62DC402317C90C6B00AD4BFB /* Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DC402117C90C6B00AD4BFB /* Checkmark@2x.png */; };
 /* End PBXBuildFile section */
@@ -61,6 +64,10 @@
 		62B42C3517C65AA30088CA97 /* CategoryPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryPickerViewController.m; sourceTree = "<group>"; };
 		62BBC04E17C51A3D0023D14A /* LocationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationDetailsViewController.h; sourceTree = "<group>"; };
 		62BBC04F17C51A3D0023D14A /* LocationDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationDetailsViewController.m; sourceTree = "<group>"; };
+		62BCFA7917CD3A7200E47106 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		62BCFA7C17CD3AAC00E47106 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		62BCFA7E17CD3E2C00E47106 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		62BCFA7F17CD3E2C00E47106 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		62DC402017C90C6B00AD4BFB /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Checkmark.png; path = "../../../The iOS Apprentice Bundle/Chapter 3 - MyLocations/Resources/Hud Images/Checkmark.png"; sourceTree = "<group>"; };
 		62DC402117C90C6B00AD4BFB /* Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Checkmark@2x.png"; path = "../../../The iOS Apprentice Bundle/Chapter 3 - MyLocations/Resources/Hud Images/Checkmark@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62BCFA7A17CD3A7200E47106 /* CoreData.framework in Frameworks */,
 				6266A3E917C2BEDA00B53753 /* CoreLocation.framework in Frameworks */,
 				6266A3BB17C2838400B53753 /* UIKit.framework in Frameworks */,
 				6266A3BD17C2838400B53753 /* Foundation.framework in Frameworks */,
@@ -83,6 +91,7 @@
 		6266A3AE17C2838400B53753 = {
 			isa = PBXGroup;
 			children = (
+				62BCFA7917CD3A7200E47106 /* CoreData.framework */,
 				6266A3C017C2838400B53753 /* MyLocations */,
 				6266A3B917C2838400B53753 /* Frameworks */,
 				6266A3B817C2838400B53753 /* Products */,
@@ -129,6 +138,9 @@
 				6266A3DC17C2838400B53753 /* SecondViewController.h */,
 				6266A3DD17C2838400B53753 /* SecondViewController.m */,
 				6266A3C117C2838400B53753 /* Supporting Files */,
+				62BCFA7B17CD3AAC00E47106 /* DataModel.xcdatamodeld */,
+				62BCFA7E17CD3E2C00E47106 /* Location.h */,
+				62BCFA7F17CD3E2C00E47106 /* Location.m */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -236,6 +248,8 @@
 				62BBC05017C51A3D0023D14A /* LocationDetailsViewController.m in Sources */,
 				62B42C3617C65AA30088CA97 /* CategoryPickerViewController.m in Sources */,
 				62B2157117C820100069D437 /* HudView.m in Sources */,
+				62BCFA7D17CD3AAC00E47106 /* DataModel.xcdatamodeld in Sources */,
+				62BCFA8017CD3E2C00E47106 /* Location.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +377,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		62BCFA7B17CD3AAC00E47106 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				62BCFA7C17CD3AAC00E47106 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 62BCFA7C17CD3AAC00E47106 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6266A3AF17C2838400B53753 /* Project object */;
 }
