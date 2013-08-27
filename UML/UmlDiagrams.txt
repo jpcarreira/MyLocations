@@ -123,3 +123,23 @@ class HudView{
 @enduml
 
 
+
+/**
+ * Sequence diagram - obtain GPS location and physical address
+ */
+@startuml Diagrams/sd_obtainGpsCoordinatesAndPhysicalAddress
+CurrentLocationUI -> CurrentLocationViewController: getLocation:(id)sender
+alt updatingLocation == YES
+	CurrentLocationViewController -> CurrentLocationViewController: stopLocationManager
+else updatingLocation == NO
+	CurrentLocationViewController -> CurrentLocationViewController: startLocationManager
+	alt locationServicesEnabled == YES
+		CurrentLocationViewController -> CLLocationManager: delegate = self
+		CurrentLocationViewController -> CLLocationManager: desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+		CurrentLocationViewController -> CLLocationManager: startUpdatingLocation
+		CurrentLocationViewController -> CurrentLocationViewController: updatingLocation = YES
+		CurrentLocationViewController -> CurrentLocationViewController: didTimeOut
+	end
+end
+@enduml
+
