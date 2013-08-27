@@ -140,6 +140,8 @@ else updatingLocation == NO
 		CurrentLocationViewController -> CurrentLocationViewController: updatingLocation = YES
 		CurrentLocationViewController -> CurrentLocationViewController: didTimeOut
 	end
+	CurrentLocationViewController -> CurrentLocationViewController: updateLabels
+	CurrentLocationViewController -> CurrentLocationViewController: configureGetButton
 end
 @enduml
 
