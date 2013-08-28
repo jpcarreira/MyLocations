@@ -95,7 +95,7 @@ NSError *lastGeocodingError;
         controller.placemark = placemark;
         
         // same for managedObjectContext
-        controller.managedObjectContext = managedObjectContext;
+        controller.managedObjectContext = self.managedObjectContext;
     }
 }
 

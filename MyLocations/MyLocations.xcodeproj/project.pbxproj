@@ -91,7 +91,6 @@
 		6266A3AE17C2838400B53753 = {
 			isa = PBXGroup;
 			children = (
-				62BCFA7917CD3A7200E47106 /* CoreData.framework */,
 				6266A3C017C2838400B53753 /* MyLocations */,
 				6266A3B917C2838400B53753 /* Frameworks */,
 				6266A3B817C2838400B53753 /* Products */,
@@ -109,6 +108,7 @@
 		6266A3B917C2838400B53753 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				62BCFA7917CD3A7200E47106 /* CoreData.framework */,
 				6266A3E817C2BEDA00B53753 /* CoreLocation.framework */,
 				6266A3BA17C2838400B53753 /* UIKit.framework */,
 				6266A3BC17C2838400B53753 /* Foundation.framework */,
@@ -126,10 +126,13 @@
 				62B42C3517C65AA30088CA97 /* CategoryPickerViewController.m */,
 				6266A3D517C2838400B53753 /* CurrentLocationViewController.h */,
 				6266A3D617C2838400B53753 /* CurrentLocationViewController.m */,
+				62BCFA7B17CD3AAC00E47106 /* DataModel.xcdatamodeld */,
 				6266A3D817C2838400B53753 /* first.png */,
 				6266A3DA17C2838400B53753 /* first@2x.png */,
 				62B2156F17C820100069D437 /* HudView.h */,
 				62B2157017C820100069D437 /* HudView.m */,
+				62BCFA7E17CD3E2C00E47106 /* Location.h */,
+				62BCFA7F17CD3E2C00E47106 /* Location.m */,
 				62BBC04E17C51A3D0023D14A /* LocationDetailsViewController.h */,
 				62BBC04F17C51A3D0023D14A /* LocationDetailsViewController.m */,
 				6266A3D217C2838400B53753 /* MainStoryboard.storyboard */,
@@ -138,9 +141,6 @@
 				6266A3DC17C2838400B53753 /* SecondViewController.h */,
 				6266A3DD17C2838400B53753 /* SecondViewController.m */,
 				6266A3C117C2838400B53753 /* Supporting Files */,
-				62BCFA7B17CD3AAC00E47106 /* DataModel.xcdatamodeld */,
-				62BCFA7E17CD3E2C00E47106 /* Location.h */,
-				62BCFA7F17CD3E2C00E47106 /* Location.m */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";

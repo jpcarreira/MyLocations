@@ -9,6 +9,7 @@
 #import "LocationDetailsViewController.h"
 //#import "CategoryPickerViewController.h"
 #import "HudView.h"
+#import "Location.h"
 
 @interface LocationDetailsViewController ()
 
@@ -24,6 +25,9 @@ NSString *descriptionText;
 // ivar to store category name
 NSString *categoryName;
 
+// ivar to store current date (neeeded to store in Location object to import for DB)
+NSDate *date;
+
 
 # pragma mark - inits
 
@@ -36,6 +40,7 @@ NSString *categoryName;
     {
         descriptionText = @"";
         categoryName = @"No Category";
+        date = [NSDate date];
     }
     return self;
 }
@@ -71,7 +76,7 @@ NSString *categoryName;
     }
     
     // calling instance method to get a string date from NSDate
-    self.dateLabel.text = [self formatDate:[NSDate date]];
+    self.dateLabel.text = [self formatDate:date];
     
     // dismissing the keyboard if user tap elsewhere but the TextView cell
     // hideKeyboard is implemented in this .m file
@@ -178,6 +183,32 @@ NSString *categoryName;
     // calling the hud when pressing the done button and setting it's text
     HudView *hudView = [HudView hudInView:self.navigationController.view animated:YES];
     hudView.text = @"Tagged!";
+    
+    // setting up the Location object and importing it to the database
+    // creating a new location object (as it is a MANAGER object the creation process differs from standard alloc-init)
+    Location *location = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:self.managedObjectContext];
+    
+    NSLog(@"%@", location.description);
+    
+    // setting up location object properties
+    location.locationDescription = descriptionText;
+    location.category = categoryName;
+    location.latitude = [NSNumber numberWithDouble:self.coordinate.latitude];
+    location.longitude = [NSNumber numberWithDouble:self.coordinate.longitude];
+    location.date = date;
+    location.placemark = self.placemark;
+    
+    // verifying any database error
+    NSError *error;
+    if(![self.managedObjectContext save:&error])
+    {
+        NSLog(@"Error connecting to DB: %@", error);
+        abort();
+    }
+    
+    NSLog(@"%@", location.description);
+
+    
     
     // calling close screen
     // we can't just call closeScreen as we have to waint until the animation finishes; as the animation takes 0.3 seconds we give it another 0.3 and set the delay to 0.6
