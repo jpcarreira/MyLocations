@@ -36,4 +36,7 @@
 // connected to "Get My Location" button using "touch up inside" event
 -(IBAction)getLocation:(id)sender;
 
+// object for Core Data
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
 @end

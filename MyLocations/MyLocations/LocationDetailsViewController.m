@@ -16,7 +16,7 @@
 
 @implementation LocationDetailsViewController
 
-@synthesize descriptionTextView, categoryLabel, latitudeLabel, longitudeLabel, addressLabel, dateLabel, coordinate, placemark;
+@synthesize descriptionTextView, categoryLabel, latitudeLabel, longitudeLabel, addressLabel, dateLabel, coordinate, placemark, managedObjectContext;
 
 // ivar for user's description
 NSString *descriptionText;

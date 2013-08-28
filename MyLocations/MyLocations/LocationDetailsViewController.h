@@ -39,6 +39,9 @@
 // object containing the address for reverse geocoding
 @property (nonatomic, strong) CLPlacemark *placemark;
 
+// object needed for Core Data
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
 // done button in the navigation bar
 -(IBAction)done:(id)sender;
 

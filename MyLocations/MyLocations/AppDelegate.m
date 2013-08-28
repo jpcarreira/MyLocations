@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+// import needed to get the NSManagedObjectContext from LocationDetailsViewController
+#import "CurrentLocationViewController.h"
 
 // extending the class to work with CoreData
 @interface AppDelegate()
@@ -22,7 +24,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    UITabBarController *tabBarController =(UITabBarController *)self.window.rootViewController;
+    UINavigationController *navigationController = (UINavigationController *)[[tabBarController viewControllers] objectAtIndex:0];
+    CurrentLocationViewController *currentLocationViewController = (CurrentLocationViewController *)[[navigationController viewControllers]objectAtIndex:0];
+    // we can do self.managedObjectContext because we have the getter below
+    currentLocationViewController.managedObjectContext = self.managedObjectContext;
     return YES;
 }
 							
@@ -58,7 +64,7 @@
 
 -(NSManagedObjectModel *)managedObjectModel
 {
-    if(managedObjectModel == nil)
+    if (managedObjectModel == nil)
     {
         NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"DataModel" ofType:@"momd"];
         NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
@@ -70,7 +76,7 @@
 
 -(NSString *)documentsDirectory
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     return documentsDirectory;
 }
@@ -87,6 +93,7 @@
     if(persistentStoreCoordinator == nil)
     {
         NSURL *storeURL = [NSURL fileURLWithPath:[self dataStorePath]];
+        //NSLog(@"%@", storeURL);
         persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
         
         NSError *error;
@@ -99,11 +106,16 @@
     return persistentStoreCoordinator;
 }
 
-
+/**
+ * getter for ManagedObjectContext
+ */
 -(NSManagedObjectContext *) managedObjectContext
 {
+    // the first time this method is called, managedObjectContext is nil so we instantiate it
+    // (another example of lazy loading)
     if(managedObjectContext == nil)
     {
+        // this is the object that handles the SQLite data store
         NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
         if(coordinator != nil)
         {
@@ -111,6 +123,7 @@
             [managedObjectContext setPersistentStoreCoordinator:coordinator];
         }
     }
+    // once it's created, this method will always return the managedObjectContext
     return managedObjectContext;
 }
 

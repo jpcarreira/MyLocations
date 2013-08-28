@@ -17,7 +17,7 @@
 
 @implementation CurrentLocationViewController
 
-@synthesize messageLabel, latitudeLabel, longitudeLabel, addressLabel, tagButton, getButton;
+@synthesize messageLabel, latitudeLabel, longitudeLabel, addressLabel, tagButton, getButton, managedObjectContext;
 
 // ivar responsible to give GPS coordinates
 CLLocationManager *locationManager;
@@ -93,6 +93,9 @@ NSError *lastGeocodingError;
         
         // same for placemark
         controller.placemark = placemark;
+        
+        // same for managedObjectContext
+        controller.managedObjectContext = managedObjectContext;
     }
 }
 
