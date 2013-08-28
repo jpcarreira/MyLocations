@@ -7,6 +7,8 @@
 //
 
 #import "AllLocationsViewController.h"
+// import needed to data source
+#import "Location.h"
 
 @interface AllLocationsViewController ()
 
@@ -78,7 +80,7 @@ NSArray *locations;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [locations count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -86,11 +88,19 @@ NSArray *locations;
     static NSString *cellIdentifier = @"Locations";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
+    // getting the respective Location object from the array
+    // (note that the array is already sorted by date)
+    Location *location = [locations objectAtIndex:indexPath.row];
+    
+    // putting the desired data in the labels
     UILabel *descriptionLabel = (UILabel *)[cell viewWithTag:100];
-    descriptionLabel.text = @"testing description";
+    descriptionLabel.text = location.locationDescription;
     
     UILabel *addressLabel = (UILabel *)[cell viewWithTag:101];
-    addressLabel.text = @"testing address\ntesting address";
+    addressLabel.text = [NSString stringWithFormat:@"%@ %@\n%@",
+            location.placemark.subThoroughfare,
+            location.placemark.thoroughfare,
+            location.placemark.locality];
     
     return cell;
 }
