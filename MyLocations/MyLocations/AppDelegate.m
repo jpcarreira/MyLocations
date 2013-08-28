@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 // import needed to get the NSManagedObjectContext from LocationDetailsViewController
 #import "CurrentLocationViewController.h"
+// the same but for AllLocationsViewController
+#import "AllLocationsViewController.h"
 
 // extending the class to work with CoreData
 @interface AppDelegate()
@@ -24,11 +26,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // assigning this managedObjectContext to the property in CurrentLocationViewController
     UITabBarController *tabBarController =(UITabBarController *)self.window.rootViewController;
     UINavigationController *navigationController = (UINavigationController *)[[tabBarController viewControllers] objectAtIndex:0];
     CurrentLocationViewController *currentLocationViewController = (CurrentLocationViewController *)[[navigationController viewControllers]objectAtIndex:0];
     // we can do self.managedObjectContext because we have the getter below
     currentLocationViewController.managedObjectContext = self.managedObjectContext;
+    
+    // doing the same but for the property in AllLocationsViewController
+    navigationController = (UINavigationController *)[[tabBarController viewControllers] objectAtIndex:1];
+    AllLocationsViewController *allLocationsViewController = (AllLocationsViewController *)[[navigationController viewControllers] objectAtIndex:0];
+    allLocationsViewController.managedObjectContext = self.managedObjectContext;
+    
     return YES;
 }
 							
