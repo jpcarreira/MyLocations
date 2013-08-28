@@ -78,7 +78,7 @@
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    //NSLog(@"%@", documentsDirectory);
+    NSLog(@"%@", documentsDirectory);
     return documentsDirectory;
 }
 
@@ -126,6 +126,29 @@
     }
     // once it's created, this method will always return the managedObjectContext
     return managedObjectContext;
+}
+
+
+# pragma mark - SQLite error handling
+
+-(void)fatalCoreDataError:(NSError *)error
+{
+    UIAlertView *alertView = [[UIAlertView alloc]
+        initWithTitle:NSLocalizedString(@"Internal error", nil)
+        message:NSLocalizedString(@"There was a fatal error and the app cannot continue\nPress OK to terminate\nSorry for the inconvenience", nil)
+        delegate:self
+        cancelButtonTitle:NSLocalizedString(@"OK", nil)
+        otherButtonTitles:nil, nil];
+
+    [alertView show];
+}
+
+
+# pragma mark - UIAlertView delegate
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    abort();
 }
 
 @end

@@ -198,18 +198,19 @@ NSDate *date;
     location.date = date;
     location.placemark = self.placemark;
     
-    // verifying any database error
+    // saving to SQLite with error verification
     NSError *error;
     if(![self.managedObjectContext save:&error])
     {
-        NSLog(@"Error connecting to DB: %@", error);
-        abort();
+        // using the macro defined on MyLocations-Info.plist to handle any SQLite error
+        FATAL_CORE_DATA_ERROR(error);
+        // sends the fataDataCoreError message to the application delegate
+        [(id)[[UIApplication sharedApplication] delegate] performSelector:@selector(fatalCoreDataError:) withObject:error];
+        return;
     }
     
     NSLog(@"%@", location.description);
 
-    
-    
     // calling close screen
     // we can't just call closeScreen as we have to waint until the animation finishes; as the animation takes 0.3 seconds we give it another 0.3 and set the delay to 0.6
     [self performSelector:@selector(closeScreen) withObject:nil afterDelay:0.6];
