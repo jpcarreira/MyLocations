@@ -20,7 +20,6 @@
 		6266A3D717C2838400B53753 /* CurrentLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6266A3D617C2838400B53753 /* CurrentLocationViewController.m */; };
 		6266A3D917C2838400B53753 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 6266A3D817C2838400B53753 /* first.png */; };
 		6266A3DB17C2838400B53753 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6266A3DA17C2838400B53753 /* first@2x.png */; };
-		6266A3DE17C2838400B53753 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6266A3DD17C2838400B53753 /* SecondViewController.m */; };
 		6266A3E017C2838400B53753 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 6266A3DF17C2838400B53753 /* second.png */; };
 		6266A3E217C2838400B53753 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6266A3E117C2838400B53753 /* second@2x.png */; };
 		6266A3E917C2BEDA00B53753 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6266A3E817C2BEDA00B53753 /* CoreLocation.framework */; };
@@ -53,8 +52,6 @@
 		6266A3D617C2838400B53753 /* CurrentLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurrentLocationViewController.m; sourceTree = "<group>"; };
 		6266A3D817C2838400B53753 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		6266A3DA17C2838400B53753 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		6266A3DC17C2838400B53753 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		6266A3DD17C2838400B53753 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		6266A3DF17C2838400B53753 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		6266A3E117C2838400B53753 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		6266A3E817C2BEDA00B53753 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -138,8 +135,6 @@
 				6266A3D217C2838400B53753 /* MainStoryboard.storyboard */,
 				6266A3DF17C2838400B53753 /* second.png */,
 				6266A3E117C2838400B53753 /* second@2x.png */,
-				6266A3DC17C2838400B53753 /* SecondViewController.h */,
-				6266A3DD17C2838400B53753 /* SecondViewController.m */,
 				6266A3C117C2838400B53753 /* Supporting Files */,
 			);
 			path = MyLocations;
@@ -244,7 +239,6 @@
 				6266A3C717C2838400B53753 /* main.m in Sources */,
 				6266A3CB17C2838400B53753 /* AppDelegate.m in Sources */,
 				6266A3D717C2838400B53753 /* CurrentLocationViewController.m in Sources */,
-				6266A3DE17C2838400B53753 /* SecondViewController.m in Sources */,
 				62BBC05017C51A3D0023D14A /* LocationDetailsViewController.m in Sources */,
 				62B42C3617C65AA30088CA97 /* CategoryPickerViewController.m in Sources */,
 				62B2157117C820100069D437 /* HudView.m in Sources */,
