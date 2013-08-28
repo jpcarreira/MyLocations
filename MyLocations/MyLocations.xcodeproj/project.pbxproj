@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6246EDEA17CE812600FA5F3B /* AllLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6246EDE917CE812600FA5F3B /* AllLocationsViewController.m */; };
 		6266A3BB17C2838400B53753 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6266A3BA17C2838400B53753 /* UIKit.framework */; };
 		6266A3BD17C2838400B53753 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6266A3BC17C2838400B53753 /* Foundation.framework */; };
 		6266A3BF17C2838400B53753 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6266A3BE17C2838400B53753 /* CoreGraphics.framework */; };
@@ -34,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6246EDE817CE812500FA5F3B /* AllLocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllLocationsViewController.h; sourceTree = "<group>"; };
+		6246EDE917CE812600FA5F3B /* AllLocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllLocationsViewController.m; sourceTree = "<group>"; };
 		6266A3B717C2838400B53753 /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6266A3BA17C2838400B53753 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6266A3BC17C2838400B53753 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -136,6 +139,8 @@
 				6266A3DF17C2838400B53753 /* second.png */,
 				6266A3E117C2838400B53753 /* second@2x.png */,
 				6266A3C117C2838400B53753 /* Supporting Files */,
+				6246EDE817CE812500FA5F3B /* AllLocationsViewController.h */,
+				6246EDE917CE812600FA5F3B /* AllLocationsViewController.m */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -244,6 +249,7 @@
 				62B2157117C820100069D437 /* HudView.m in Sources */,
 				62BCFA7D17CD3AAC00E47106 /* DataModel.xcdatamodeld in Sources */,
 				62BCFA8017CD3E2C00E47106 /* Location.m in Sources */,
+				6246EDEA17CE812600FA5F3B /* AllLocationsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
