@@ -11,6 +11,8 @@
 #import "Location.h"
 // import needed for custom cell subclass
 #import "LocationCell.h"
+// import needed to reuse the edit screen
+#import "LocationDetailsViewController.h"
 
 @interface AllLocationsViewController ()
 
@@ -23,6 +25,7 @@
 // ivar to store the Location objects retrived by fetching
 NSArray *locations;
 
+#pragma mark - Standard View Controller methods
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -71,6 +74,25 @@ NSArray *locations;
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"EditLocation"])
+    {
+        // getting the following navigation controller
+        UINavigationController *navigationController = segue.destinationViewController;
+        // getting the LocationDetailsViewController
+        LocationDetailsViewController *controller = (LocationDetailsViewController *)navigationController.topViewController;
+        
+        // passing the context
+        controller.managedObjectContext = self.managedObjectContext;
+        
+        // passing the Location object corresponding to the tapped row
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        Location *location = [locations objectAtIndex:indexPath.row];
+        controller.locationToEdit = location;
+    }
 }
 
 #pragma mark - Table view data source

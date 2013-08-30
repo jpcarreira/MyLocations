@@ -334,7 +334,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGR-xY-jjq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2160" y="-690"/>
+            <point key="canvasLocation" x="2152" y="-26"/>
         </scene>
         <!--Category Picker View Controller - Choose Category-->
         <scene sceneID="o71-Kh-HCv">
@@ -353,7 +353,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K4D-v1-1GN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2721" y="-690"/>
+            <point key="canvasLocation" x="2675" y="-26"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="15">
@@ -426,6 +426,7 @@
                                 <connections>
                                     <outlet property="addressLabel" destination="uGe-vA-rYs" id="qoI-Zu-Si6"/>
                                     <outlet property="descriptionLabel" destination="lZN-qd-6iR" id="IJy-YD-6Xd"/>
+                                    <segue destination="h4c-Tb-aZb" kind="modal" identifier="EditLocation" id="UAd-CV-2Bv"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -456,7 +457,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RkY-4W-7eL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1635" y="-690"/>
+            <point key="canvasLocation" x="1645" y="-26"/>
         </scene>
     </scenes>
     <classes>
@@ -504,4 +505,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="UAd-CV-2Bv"/>
+    </inferredMetricsTieBreakers>
 </document>

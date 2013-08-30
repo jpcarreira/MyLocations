@@ -12,6 +12,9 @@
 //#import <CoreLocation/CoreLocation.h>
 #import "CategoryPickerViewController.h"
 
+// needed to edit Location objects in this same screen
+@class Location;
+
 // conforming with UITextViewDelegate for user's description
 @interface LocationDetailsViewController : UITableViewController<UITextViewDelegate, CategoryPickerViewControllerDelegate>
 
@@ -41,6 +44,9 @@
 
 // object needed for Core Data
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
+// object needed to edit location
+@property (nonatomic, strong) Location *locationToEdit;
 
 // done button in the navigation bar
 -(IBAction)done:(id)sender;

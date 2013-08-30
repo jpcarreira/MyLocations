@@ -138,14 +138,14 @@
 				62B2157017C820100069D437 /* HudView.m */,
 				62BCFA7E17CD3E2C00E47106 /* Location.h */,
 				62BCFA7F17CD3E2C00E47106 /* Location.m */,
+				62C9EE0917D038AE007B189F /* LocationCell.h */,
+				62C9EE0A17D038AE007B189F /* LocationCell.m */,
 				62BBC04E17C51A3D0023D14A /* LocationDetailsViewController.h */,
 				62BBC04F17C51A3D0023D14A /* LocationDetailsViewController.m */,
 				6266A3D217C2838400B53753 /* MainStoryboard.storyboard */,
 				6266A3DF17C2838400B53753 /* second.png */,
 				6266A3E117C2838400B53753 /* second@2x.png */,
 				6266A3C117C2838400B53753 /* Supporting Files */,
-				62C9EE0917D038AE007B189F /* LocationCell.h */,
-				62C9EE0A17D038AE007B189F /* LocationCell.m */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";

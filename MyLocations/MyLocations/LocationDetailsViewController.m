@@ -17,7 +17,7 @@
 
 @implementation LocationDetailsViewController
 
-@synthesize descriptionTextView, categoryLabel, latitudeLabel, longitudeLabel, addressLabel, dateLabel, coordinate, placemark, managedObjectContext;
+@synthesize descriptionTextView, categoryLabel, latitudeLabel, longitudeLabel, addressLabel, dateLabel, coordinate, placemark, managedObjectContext, locationToEdit;
 
 // ivar for user's description
 NSString *descriptionText;
@@ -51,7 +51,18 @@ NSDate *date;
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // checking whether we're adding or editing a Location
+    // if we're editing a location
+    if(self.locationToEdit != nil)
+    {
+        // setting the title to "edit"
+        self.title = @"Edit Location";
         
+        // setting the bar button to "done" (using target-action pattern)
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStyleDone target:self action:@selector(done:)];
+    }
+    
     // updating the text view text
     self.descriptionTextView.text = descriptionText;
     
@@ -172,6 +183,25 @@ NSDate *date;
     [self.descriptionTextView resignFirstResponder];
 }
 
+
+/**
+ * locationToEdit setter (used to edit an existing location)
+ * (in the prepareForSegue of AllLocationsViewController we have controller.locationToEdit = .... so when this is done this setter is automatically
+ * called and by overriding the default setter we can put the desired data in it's properties so it shows the correct information when this
+ * screen comes up)
+ */
+-(void)setLocationToEdit:(Location *)newLocationToEdit
+{
+    if(locationToEdit != newLocationToEdit)
+    {
+        locationToEdit = newLocationToEdit;
+        descriptionText = locationToEdit.locationDescription;
+        categoryName = locationToEdit.category;
+        self.coordinate = CLLocationCoordinate2DMake([locationToEdit.latitude doubleValue], [locationToEdit.longitude doubleValue]);
+        self.placemark = locationToEdit.placemark;
+        date = locationToEdit.date;
+    }
+}
 
 # pragma mark - IBActions
 
