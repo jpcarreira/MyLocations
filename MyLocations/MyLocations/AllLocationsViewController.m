@@ -23,7 +23,11 @@
 @synthesize managedObjectContext;
 
 // ivar to store the Location objects retrived by fetching
-NSArray *locations;
+// (deprecated once started using NSFetchedResultsController)
+//NSArray *locations;
+
+// ivar to store fetch from SQLite
+NSFetchedResultsController *fetchedResultsController;
 
 #pragma mark - Standard View Controller methods
 
@@ -40,7 +44,11 @@ NSArray *locations;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // performing an initial fetch when view is loaded as well as when there are changes in the DB
+    [self performFecth];
     
+    // bellow is deprecated since using fetchedResultsController
+    /*
     // this class will acknowledge the location objects by fectching
     // NSFetchRequest describes which objects we're fetching from the DB
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
@@ -69,6 +77,7 @@ NSArray *locations;
     
     // assigning found objects to ivar
     locations = foundObjects;    
+     */
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,10 +99,17 @@ NSArray *locations;
         
         // passing the Location object corresponding to the tapped row
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        Location *location = [locations objectAtIndex:indexPath.row];
+        Location *location = [self.fetchedResultsController objectAtIndexPath:indexPath];
         controller.locationToEdit = location;
     }
 }
+
+-(void)dealloc
+{
+    // dealloc is called whenever this view controller is destroyed so we should nil out the delegate when that happens
+    fetchedResultsController.delegate = nil;
+}
+
 
 #pragma mark - Table view data source
 
@@ -104,7 +120,8 @@ NSArray *locations;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [locations count];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -125,7 +142,7 @@ NSArray *locations;
 {
     // cast is need as cell passed as parameter is a UITableViewCell object
     LocationCell *locationCell = (LocationCell *)cell;
-    Location *location = [locations objectAtIndex:indexPath.row];
+    Location *location = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     // checking if the given location has a description
     if([location.locationDescription length] > 0)
@@ -152,12 +169,108 @@ NSArray *locations;
     }
 }
 
+-(NSFetchedResultsController *)fetchedResultsController
+{
+    // lazy loading
+    if(fetchedResultsController == nil)
+    {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
+        
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Location" inManagedObjectContext:self.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        
+        // setting to 20 the maximum of objects fetched at a given time
+        [fetchRequest setFetchBatchSize:20];
+        
+        fetchedResultsController = [[NSFetchedResultsController alloc]
+                    initWithFetchRequest:fetchRequest
+                    managedObjectContext:self.managedObjectContext
+                    sectionNameKeyPath:nil
+                    // setting a cache name allows a fast-load from cache if the app quits
+                    cacheName:@"Locations"];
+        fetchedResultsController.delegate = self;
+    }
+    return fetchedResultsController;
+}
+
+-(void)performFecth
+{
+    NSError *error;
+    if(![self.fetchedResultsController performFetch:&error])
+    {
+        FATAL_CORE_DATA_ERROR(error);
+        return;
+    }
+}
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+}
+
+
+#pragma mark - NSFetchedResultsControllerDelegate
+
+-(void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    NSLog(@"Controller will change content");
+    [self.tableView beginUpdates];
+}
+
+
+-(void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    switch(type)
+    {
+        case NSFetchedResultsChangeInsert:
+            NSLog(@"Controller did change object: NSFetchedResultsChangeInsert");
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        
+        case NSFetchedResultsChangeDelete:
+            NSLog(@"Controller did change object: NSFetchedResultsChangeDelete");
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            NSLog(@"Controller did change object: NSFetchedResultsChangeUpdate");
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:newIndexPath];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            NSLog(@"Controller did change object: NSFetchedResultsChangeMove");
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+
+-(void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+    switch(type)
+    {
+        case NSFetchedResultsChangeInsert:
+            NSLog(@"Controller did change section: NSFetchedResultsChangeInsert");
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        
+        case NSFetchedResultsChangeDelete:
+            NSLog(@"Controller did change section: NSFetchedResultsChangeDelete");
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+-(void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    NSLog(@"Controller did change content");
+    [self.tableView endUpdates];
 }
 
 @end

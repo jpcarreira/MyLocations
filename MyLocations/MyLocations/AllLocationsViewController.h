@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AllLocationsViewController : UITableViewController
+@interface AllLocationsViewController : UITableViewController<NSFetchedResultsControllerDelegate>
 
 // object needed to read data from the database
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
