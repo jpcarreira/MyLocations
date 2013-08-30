@@ -212,11 +212,24 @@ NSDate *date;
 {
     // calling the hud when pressing the done button and setting it's text
     HudView *hudView = [HudView hudInView:self.navigationController.view animated:YES];
-    hudView.text = @"Tagged!";
     
-    // setting up the Location object and importing it to the database
-    // creating a new location object (as it is a MANAGER object the creation process differs from standard alloc-init)
-    Location *location = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:self.managedObjectContext];
+    // Location object to be used either in adding or editing mode
+    Location *location = nil;
+    
+    // if editing we do not call insertNewObjectForEntityForName
+    if(locationToEdit != nil)
+    {
+        hudView.text = @"Updated!";
+        location = self.locationToEdit;
+    }
+    // if adding a new Location we call insertNewObjectForEntityForName
+    else
+    {
+        hudView.text = @"Tagged!";
+        // setting up the Location object and importing it to the database
+        // creating a new location object (as it is a MANAGER object the creation process differs from standard alloc-init)
+        location = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:self.managedObjectContext];
+    }
     
     NSLog(@"%@", location.description);
     
