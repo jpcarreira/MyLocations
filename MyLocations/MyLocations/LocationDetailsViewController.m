@@ -60,7 +60,7 @@ NSDate *date;
         self.title = @"Edit Location";
         
         // setting the bar button to "done" (using target-action pattern)
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStyleDone target:self action:@selector(done:)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
     }
     
     // updating the text view text
