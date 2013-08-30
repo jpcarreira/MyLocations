@@ -9,6 +9,8 @@
 #import "AllLocationsViewController.h"
 // import needed to data source
 #import "Location.h"
+// import needed for custom cell subclass
+#import "LocationCell.h"
 
 @interface AllLocationsViewController ()
 
@@ -85,24 +87,47 @@ NSArray *locations;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"Locations";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-    // getting the respective Location object from the array
-    // (note that the array is already sorted by date)
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Location"];
+    // calling class method to set cells description and address labels
+    [self configureCell:cell atIndexPath:indexPath];
+    return cell;
+}
+
+
+#pragma mark - class methods
+
+/**
+ * configures a cell using the custom cell subclass
+ */
+-(void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    // cast is need as cell passed as parameter is a UITableViewCell object
+    LocationCell *locationCell = (LocationCell *)cell;
     Location *location = [locations objectAtIndex:indexPath.row];
     
-    // putting the desired data in the labels
-    UILabel *descriptionLabel = (UILabel *)[cell viewWithTag:100];
-    descriptionLabel.text = location.locationDescription;
+    // checking if the given location has a description
+    if([location.locationDescription length] > 0)
+    {
+        locationCell.descriptionLabel.text = location.locationDescription;
+    }
+    else
+    {
+        locationCell.descriptionLabel.text = @"(no description)";
+    }
     
-    UILabel *addressLabel = (UILabel *)[cell viewWithTag:101];
-    addressLabel.text = [NSString stringWithFormat:@"%@ %@\n%@",
-            location.placemark.subThoroughfare,
-            location.placemark.thoroughfare,
-            location.placemark.locality];
-    
-    return cell;
+    // checking if we have a placemark
+    if(location.placemark != nil)
+    {
+        locationCell.addressLabel.text = [NSString stringWithFormat:@"%@ %@\n%@",
+                                          location.placemark.subThoroughfare,
+                                          location.placemark.thoroughfare,
+                                          location.placemark.locality];
+    }
+    // else we give it's coordinates
+    else
+    {
+        locationCell.addressLabel.text = [NSString stringWithFormat:@"Lat: %.8f, Long: %.8f", [location.latitude doubleValue], [location.longitude doubleValue]];
+    }
 }
 
 

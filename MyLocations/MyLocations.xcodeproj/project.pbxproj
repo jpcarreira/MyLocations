@@ -30,6 +30,7 @@
 		62BCFA7A17CD3A7200E47106 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BCFA7917CD3A7200E47106 /* CoreData.framework */; };
 		62BCFA7D17CD3AAC00E47106 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62BCFA7B17CD3AAC00E47106 /* DataModel.xcdatamodeld */; };
 		62BCFA8017CD3E2C00E47106 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BCFA7F17CD3E2C00E47106 /* Location.m */; };
+		62C9EE0B17D038AE007B189F /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C9EE0A17D038AE007B189F /* LocationCell.m */; };
 		62DC402217C90C6B00AD4BFB /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DC402017C90C6B00AD4BFB /* Checkmark.png */; };
 		62DC402317C90C6B00AD4BFB /* Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DC402117C90C6B00AD4BFB /* Checkmark@2x.png */; };
 /* End PBXBuildFile section */
@@ -68,6 +69,8 @@
 		62BCFA7C17CD3AAC00E47106 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		62BCFA7E17CD3E2C00E47106 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		62BCFA7F17CD3E2C00E47106 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		62C9EE0917D038AE007B189F /* LocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCell.h; sourceTree = "<group>"; };
+		62C9EE0A17D038AE007B189F /* LocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
 		62DC402017C90C6B00AD4BFB /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Checkmark.png; path = "../../../The iOS Apprentice Bundle/Chapter 3 - MyLocations/Resources/Hud Images/Checkmark.png"; sourceTree = "<group>"; };
 		62DC402117C90C6B00AD4BFB /* Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Checkmark@2x.png"; path = "../../../The iOS Apprentice Bundle/Chapter 3 - MyLocations/Resources/Hud Images/Checkmark@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +123,8 @@
 		6266A3C017C2838400B53753 /* MyLocations */ = {
 			isa = PBXGroup;
 			children = (
+				6246EDE817CE812500FA5F3B /* AllLocationsViewController.h */,
+				6246EDE917CE812600FA5F3B /* AllLocationsViewController.m */,
 				6266A3C917C2838400B53753 /* AppDelegate.h */,
 				6266A3CA17C2838400B53753 /* AppDelegate.m */,
 				62B42C3417C65AA30088CA97 /* CategoryPickerViewController.h */,
@@ -139,8 +144,8 @@
 				6266A3DF17C2838400B53753 /* second.png */,
 				6266A3E117C2838400B53753 /* second@2x.png */,
 				6266A3C117C2838400B53753 /* Supporting Files */,
-				6246EDE817CE812500FA5F3B /* AllLocationsViewController.h */,
-				6246EDE917CE812600FA5F3B /* AllLocationsViewController.m */,
+				62C9EE0917D038AE007B189F /* LocationCell.h */,
+				62C9EE0A17D038AE007B189F /* LocationCell.m */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 				62BCFA7D17CD3AAC00E47106 /* DataModel.xcdatamodeld in Sources */,
 				62BCFA8017CD3E2C00E47106 /* Location.m in Sources */,
 				6246EDEA17CE812600FA5F3B /* AllLocationsViewController.m in Sources */,
+				62C9EE0B17D038AE007B189F /* LocationCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
