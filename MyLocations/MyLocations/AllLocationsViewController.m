@@ -44,6 +44,10 @@ NSFetchedResultsController *fetchedResultsController;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // enabling edit button to delete/move Location objects
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
     // performing an initial fetch when view is loaded as well as when there are changes in the DB
     [self performFecth];
     
