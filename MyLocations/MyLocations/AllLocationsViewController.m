@@ -132,6 +132,26 @@ NSFetchedResultsController *fetchedResultsController;
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // swipe to delete
+    if(editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        // getting the object from the index path and deleting it from the data store
+        Location *location = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [self.managedObjectContext deleteObject:location];
+        // at this points the NSFetchedResultsController should be triggered to send a message to NSFetchedResultsChangeDelete which will update the table by deleting it's row
+        
+        // dealing with errors
+        NSError *error;
+        if(![self.managedObjectContext save:&error])
+        {
+            FATAL_CORE_DATA_ERROR(error);
+            return;
+        }
+    }
+}
+
 
 #pragma mark - class methods
 
