@@ -119,7 +119,13 @@ NSFetchedResultsController *fetchedResultsController;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [[self.fetchedResultsController sections] count];
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    return [sectionInfo name];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -203,8 +209,12 @@ NSFetchedResultsController *fetchedResultsController;
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Location" inManagedObjectContext:self.managedObjectContext];
         [fetchRequest setEntity:entity];
         
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
-        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        // sorter for category
+        NSSortDescriptor *sortDescriptorByCategory = [NSSortDescriptor sortDescriptorWithKey:@"category" ascending:YES];
+        // sorter for date
+        NSSortDescriptor *sortDescriptorByDate = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+        // sorting by category first and in each category sorting by date
+        [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptorByCategory, sortDescriptorByDate, nil]];
         
         // setting to 20 the maximum of objects fetched at a given time
         [fetchRequest setFetchBatchSize:20];
@@ -212,7 +222,8 @@ NSFetchedResultsController *fetchedResultsController;
         fetchedResultsController = [[NSFetchedResultsController alloc]
                     initWithFetchRequest:fetchRequest
                     managedObjectContext:self.managedObjectContext
-                    sectionNameKeyPath:nil
+                    // the results will be grouped based on the value of 'category'
+                    sectionNameKeyPath:@"category"
                     // setting a cache name allows a fast-load from cache if the app quits
                     cacheName:@"Locations"];
         fetchedResultsController.delegate = self;
