@@ -25,6 +25,7 @@
 		6266A3E217C2838400B53753 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6266A3E117C2838400B53753 /* second@2x.png */; };
 		6266A3E917C2BEDA00B53753 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6266A3E817C2BEDA00B53753 /* CoreLocation.framework */; };
 		626DD68717DF8DD2003F3340 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 626DD68617DF8DD2003F3340 /* MapKit.framework */; };
+		626DD68A17DF9773003F3340 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 626DD68917DF9773003F3340 /* MapViewController.m */; };
 		62B2157117C820100069D437 /* HudView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B2157017C820100069D437 /* HudView.m */; };
 		62B42C3617C65AA30088CA97 /* CategoryPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B42C3517C65AA30088CA97 /* CategoryPickerViewController.m */; };
 		62BBC05017C51A3D0023D14A /* LocationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BBC04F17C51A3D0023D14A /* LocationDetailsViewController.m */; };
@@ -61,6 +62,8 @@
 		6266A3E117C2838400B53753 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		6266A3E817C2BEDA00B53753 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		626DD68617DF8DD2003F3340 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		626DD68817DF9773003F3340 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		626DD68917DF9773003F3340 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		62B2156F17C820100069D437 /* HudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudView.h; sourceTree = "<group>"; };
 		62B2157017C820100069D437 /* HudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudView.m; sourceTree = "<group>"; };
 		62B42C3417C65AA30088CA97 /* CategoryPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryPickerViewController.h; sourceTree = "<group>"; };
@@ -150,6 +153,8 @@
 				6266A3DF17C2838400B53753 /* second.png */,
 				6266A3E117C2838400B53753 /* second@2x.png */,
 				6266A3C117C2838400B53753 /* Supporting Files */,
+				626DD68817DF9773003F3340 /* MapViewController.h */,
+				626DD68917DF9773003F3340 /* MapViewController.m */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				62BCFA8017CD3E2C00E47106 /* Location.m in Sources */,
 				6246EDEA17CE812600FA5F3B /* AllLocationsViewController.m in Sources */,
 				62C9EE0B17D038AE007B189F /* LocationCell.m in Sources */,
+				626DD68A17DF9773003F3340 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
