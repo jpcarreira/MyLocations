@@ -471,13 +471,16 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="mOU-2F-MWh">
                                 <rect key="frame" x="0.0" y="44" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="PS3-Ta-Ofl" id="lTK-jO-qoF"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" id="Wfn-is-aKr"/>
                     <connections>
-                        <outlet property="mapView" destination="mOU-2F-MWh" id="guZ-QR-r1a"/>
+                        <outlet property="mapView" destination="mOU-2F-MWh" id="E9s-TK-jfo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x7T-Te-1UU" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -8,6 +8,9 @@
 
 #import "MapViewController.h"
 
+// needed for MKMapViewDelegate
+#import "Location.h"
+
 @interface MapViewController ()
 
 @end
@@ -134,6 +137,63 @@ NSArray *locations;
     }
     
     return [self.mapView regionThatFits:region];
+}
+
+
+-(void)showLocationDetails:(UIButton *)button
+{
+    
+}
+
+
+#pragma mark - MKMapViewDelegate
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    // making sure the annotation object is a Location object
+    // (because MKAnnotation is a protocol there are other objects other than Location objects that could be included, such as the blue pin representing the user's current location and we want to leave these objects alone)
+    if([annotation isKindOfClass:[Location class]])
+    {
+        // defining an identifier
+        static NSString *identifier = @"Location";
+        
+        // creating a new pin
+        // (we're not limited to MKPinAnnotationView, we could subclass MKAnnotationView and do our own class)
+        MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        
+        // constructing and configuring the annotation view
+        // (reusing the annotation view object)
+        if(annotationView == nil)
+        {
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            annotationView.enabled = YES;
+            annotationView.canShowCallout = YES;
+            annotationView.animatesDrop = NO;
+            annotationView.pinColor = MKPinAnnotationColorGreen;
+            
+            // creating an object similar to a disclosure button
+            UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            
+            // using the target-action pattern to hook the button's "touch up inside" event with showLocationDetailsMethod
+            [rightButton addTarget:self action:@selector(showLocationDetails:) forControlEvents:UIControlEventTouchUpInside];
+            
+            // adding the button to annotation view's accessory view
+            annotationView.rightCalloutAccessoryView = rightButton;
+        }
+        else
+        {
+            annotationView.annotation = annotation;
+        }
+        
+        // getting a reference to the detail disclosure button built above
+        UIButton *button = (UIButton *)annotationView.rightCalloutAccessoryView;
+        
+        // setting a tag to that button so we can locate the respective Location object when showLocationDetails is called 
+        button.tag = [locations indexOfObject:(Location *)annotation];
+        
+        return annotationView;
+    }
+    return nil;
 }
 
 
