@@ -33,6 +33,18 @@ NSArray *locations;
     return self;
 }
 
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    if((self = [super initWithCoder:aDecoder]))
+    {
+        // setting the current view controller as an observer for NSManagedObjectContextObjectsDidChangeNotification
+        // (this notification is sent to managedObjectContext whenever there's a change in the data store)
+        // (in response to the notification the contextDidChange: is called)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contextDidChange:) name:NSManagedObjectContextObjectsDidChangeNotification object:self.managedObjectContext];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -63,6 +75,12 @@ NSArray *locations;
         Location *location = [locations objectAtIndex:((UIButton*)sender).tag];
         controller.locationToEdit = location;
     }
+}
+
+-(void)dealloc
+{
+    // we're stopping the NSNotificationCenter to send notifications whenever the current view controller ceases to exist
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextObjectsDidChangeNotification object:self.managedObjectContext];
 }
 
 
@@ -164,6 +182,19 @@ NSArray *locations;
 {
     // the button is sent as we'll use the button's tag to identify the Location object
     [self performSegueWithIdentifier:@"EditLocation" sender:button];
+}
+
+
+/**
+ * updates pins in the map whenever there's a change in the data store
+ * (this method is called by NSNotificationCenter)
+ */
+-(void)contextDidChange:(NSNotification *)notification
+{
+    if([self isViewLoaded])
+    {
+        [self updateLocations];
+    }
 }
 
 
