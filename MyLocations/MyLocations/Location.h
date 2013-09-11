@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-
-@interface Location : NSManagedObject
+// conforming this class to MKAnnotation so we can display pins in a map
+@interface Location : NSManagedObject <MKAnnotation>
 
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;

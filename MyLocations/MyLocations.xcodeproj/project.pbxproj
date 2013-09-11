@@ -150,11 +150,11 @@
 				62BBC04E17C51A3D0023D14A /* LocationDetailsViewController.h */,
 				62BBC04F17C51A3D0023D14A /* LocationDetailsViewController.m */,
 				6266A3D217C2838400B53753 /* MainStoryboard.storyboard */,
+				626DD68817DF9773003F3340 /* MapViewController.h */,
+				626DD68917DF9773003F3340 /* MapViewController.m */,
 				6266A3DF17C2838400B53753 /* second.png */,
 				6266A3E117C2838400B53753 /* second@2x.png */,
 				6266A3C117C2838400B53753 /* Supporting Files */,
-				626DD68817DF9773003F3340 /* MapViewController.h */,
-				626DD68917DF9773003F3340 /* MapViewController.m */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";

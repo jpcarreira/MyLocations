@@ -11,6 +11,8 @@
 #import "CurrentLocationViewController.h"
 // the same but for AllLocationsViewController
 #import "AllLocationsViewController.h"
+// the same for map view
+#import "MapViewController.h"
 
 // extending the class to work with CoreData
 @interface AppDelegate()
@@ -37,6 +39,10 @@
     navigationController = (UINavigationController *)[[tabBarController viewControllers] objectAtIndex:1];
     AllLocationsViewController *allLocationsViewController = (AllLocationsViewController *)[[navigationController viewControllers] objectAtIndex:0];
     allLocationsViewController.managedObjectContext = self.managedObjectContext;
+    
+    // doing the same but for the property in MapViewController
+    MapViewController *mapViewController = (MapViewController *)[[tabBarController viewControllers] objectAtIndex:2];
+    mapViewController.managedObjectContext = self.managedObjectContext;
     
     return YES;
 }
