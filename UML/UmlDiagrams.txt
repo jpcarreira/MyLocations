@@ -5,10 +5,12 @@
 @startuml Diagrams/use_case.png
 left to right direction
 User --> (obtain GPS location \nand physical address)
-(obtain GPS location \nand physical address) .> (save location) : extends 
-(obtain GPS location \nand physical address) .> (add category to location) : extends
-(obtain GPS location \nand physical address) .> (add text description) : extends
-(obtain GPS location \nand physical address) .> (add photo) : extends   
+User --> (visualizes saved locations in a map)
+User --> (visualizes current location in a map)
+(obtain GPS location \nand physical address) ..> (save location) : extends 
+(obtain GPS location \nand physical address) ..> (add category to location) : extends
+(obtain GPS location \nand physical address) ..> (add text description) : extends
+(obtain GPS location \nand physical address) ..> (add photo) : extends
 @enduml 
 
 
