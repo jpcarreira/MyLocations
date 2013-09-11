@@ -11,6 +11,9 @@
 // needed for MKMapViewDelegate
 #import "Location.h"
 
+// needed for prepareForSegue
+#import "LocationDetailsViewController.h"
+
 @interface MapViewController ()
 
 @end
@@ -46,6 +49,20 @@ NSArray *locations;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"EditLocation"])
+    {
+        UINavigationController *navigationController = segue.destinationViewController;
+        LocationDetailsViewController *controller = (LocationDetailsViewController *)navigationController.topViewController;
+        controller.managedObjectContext = self.managedObjectContext;
+        
+        // getting the Location object corresponding to the tag
+        Location *location = [locations objectAtIndex:((UIButton*)sender).tag];
+        controller.locationToEdit = location;
+    }
 }
 
 
@@ -140,9 +157,13 @@ NSArray *locations;
 }
 
 
+/**
+ * segues to LocationDetailsViewController
+ */
 -(void)showLocationDetails:(UIButton *)button
 {
-    
+    // the button is sent as we'll use the button's tag to identify the Location object
+    [self performSegueWithIdentifier:@"EditLocation" sender:button];
 }
 
 
