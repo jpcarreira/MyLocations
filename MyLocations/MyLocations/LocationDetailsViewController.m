@@ -58,7 +58,6 @@ NSDate *date;
     {
         // setting the title to "edit"
         self.title = @"Edit Location";
-        self.descriptionTextView.text = locationToEdit.locationDescription;
         
         // setting the bar button to "done" (using target-action pattern)
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
@@ -71,8 +70,8 @@ NSDate *date;
     self.categoryLabel.text = categoryName;
     
     // updating screen labels
-    self.descriptionTextView.text = @"";
-    self.categoryLabel.text = @"";
+    self.descriptionTextView.text = descriptionText;
+    self.categoryLabel.text = categoryName;
     self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", self.coordinate.latitude];
     self.longitudeLabel.text = [NSString stringWithFormat:@"%.8f", self.coordinate.longitude];
     
