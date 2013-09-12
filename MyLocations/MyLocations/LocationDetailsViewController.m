@@ -203,6 +203,33 @@ NSDate *date;
     }
 }
 
+
+/**
+ * presents an action sheet to choose from either the camera of photo library
+ */
+-(void)showPhotoMenu
+{
+    // verifies if the device has a camera
+    // uncomment below to test the action sheet in the simulator
+    //if(YES){
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        // presents the action sheet
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:nil
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Take Photo", @"Choose from library", nil];
+        
+        [actionSheet showInView:self.view];
+    }
+    else
+    {
+        [self choosePhotoFromLibrary];
+    }
+}
+
 /**
  * uses the UIImagePickerController to get a photo from the photo library
  */
@@ -374,7 +401,7 @@ NSDate *date;
     // taking a photo
     if(indexPath.section == 1 && indexPath.row == 0)
     {
-        [self choosePhotoFromLibrary];
+        [self showPhotoMenu];
     }
 }
 

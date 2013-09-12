@@ -21,7 +21,9 @@
     CategoryPickerViewControllerDelegate,
     /* the following two delegates are needed for the UIImagePicker */
     UIImagePickerControllerDelegate,
-    UINavigationControllerDelegate>
+    UINavigationControllerDelegate,
+    /* needed for the action sheet */
+    UIActionSheetDelegate>
 
 // text view to enter location description
 @property (nonatomic, strong) IBOutlet UITextView *descriptionTextView;
