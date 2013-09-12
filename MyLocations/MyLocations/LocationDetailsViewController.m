@@ -252,6 +252,28 @@ NSDate *date;
     [self.navigationController presentViewController:imagePicker animated:YES completion:nil];
 }
 
+/**
+ * uses the UIImagePickerController to get a photo with the camera
+ */
+-(void)takePhoto
+{
+    // UIImagePickerController is a view controller that allows to take new pictures or picking them from the library
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    
+    // setting this LocationDetailsViewController as delegate for UIImagePickerController
+    // (this way, end the user closes the image picker screen the delegate methods will pass information to this LocationDetailsViewController)
+    imagePicker.delegate = self;
+    
+    // setting some properties for UIImagePickerController
+    // allows user to move and scale a photo
+    imagePicker.allowsEditing = YES;
+    // defining the source solely as Photo Library
+    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    // presenting the UIImagePickerController
+    [self.navigationController presentViewController:imagePicker animated:YES completion:nil];
+}
+
 
 # pragma mark - IBActions
 
@@ -401,6 +423,8 @@ NSDate *date;
     // taking a photo
     if(indexPath.section == 1 && indexPath.row == 0)
     {
+        // deselecting the row (to turn it's blue color off)
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [self showPhotoMenu];
     }
 }
@@ -446,6 +470,21 @@ NSDate *date;
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+#pragma mark - UIActionSheetDelegate
+
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0)
+    {
+        [self takePhoto];
+    }
+    else if(buttonIndex == 1)
+    {
+        [self choosePhotoFromLibrary];
+    }
 }
 
 @end
