@@ -203,6 +203,29 @@ NSDate *date;
     }
 }
 
+/**
+ * uses the UIImagePickerController to get a photo from the photo library
+ */
+-(void)choosePhotoFromLibrary
+{
+    // UIImagePickerController is a view controller that allows to take new pictures or picking them from the library
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    
+    // setting this LocationDetailsViewController as delegate for UIImagePickerController
+    // (this way, end the user closes the image picker screen the delegate methods will pass information to this LocationDetailsViewController)
+    imagePicker.delegate = self;
+    
+    // setting some properties for UIImagePickerController
+    // allows user to move and scale a photo
+    imagePicker.allowsEditing = YES;
+    // defining the source solely as Photo Library
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    // presenting the UIImagePickerController
+    [self.navigationController presentViewController:imagePicker animated:YES completion:nil];
+}
+
+
 # pragma mark - IBActions
 
 /**
@@ -338,13 +361,20 @@ NSDate *date;
 
 
 /**
- * using this method to launch keyboard once the description textview cell's is tapped
+ * defining which actions occur in each row
  */
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // launch keyboard once the description textview cell's is tapped
     if(indexPath.section == 0 && indexPath.row == 0)
     {
         [self.descriptionTextView becomeFirstResponder];
+    }
+    
+    // taking a photo
+    if(indexPath.section == 1 && indexPath.row == 0)
+    {
+        [self choosePhotoFromLibrary];
     }
 }
 
@@ -379,5 +409,16 @@ NSDate *date;
 }
 
 
+#pragma mark - UIImagePickerControllerDelegate
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

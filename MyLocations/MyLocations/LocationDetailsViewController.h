@@ -16,7 +16,12 @@
 @class Location;
 
 // conforming with UITextViewDelegate for user's description
-@interface LocationDetailsViewController : UITableViewController<UITextViewDelegate, CategoryPickerViewControllerDelegate>
+@interface LocationDetailsViewController : UITableViewController
+    <UITextViewDelegate,
+    CategoryPickerViewControllerDelegate,
+    /* the following two delegates are needed for the UIImagePicker */
+    UIImagePickerControllerDelegate,
+    UINavigationControllerDelegate>
 
 // text view to enter location description
 @property (nonatomic, strong) IBOutlet UITextView *descriptionTextView;
