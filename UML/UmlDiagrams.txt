@@ -23,6 +23,7 @@ User --> (visualizes current location in a map)
 
 CurrentLocationViewController -- LocationDetailsViewController
 AllLocationsViewController -- LocationDetailsViewController
+MapViewController -- LocationDetailsViewController
 AllLocationsViewController <-- LocationCell
 LocationDetailsViewController -- CategoryPickerViewController
 LocationDetailsViewController -- HudView
@@ -172,6 +173,30 @@ class LocationCell{
 	__
 	- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 	- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+}
+
+class MapViewController{
+	+NSManagedObjectContext *managedObjectContext
+	+MKMapView *mapView
+	-NSArray *locations
+	__
+	-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+	-(id)initWithCoder:(NSCoder *)aDecoder
+	-(void)viewDidLoad
+	-(void)didReceiveMemoryWarning
+	-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)segue
+	-(void)dealloc
+	..<b>class methods</b>..
+	-(void)updateLocations
+	-(MKCoordinateRegion)regionForAnnotations:(NSArray *)annotations
+	-(void)showLocationDetails:(UIButton *)button
+	-(void)contextDidChange:(NSNotification *)notification
+	..<b>MKMapViewDelegate</b>..
+	-(MKAnnotationView *)mapView:(MapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+	..<b>IBActions</b>..
+	+(IBAction)showUser
+	+(IBAction)showLocations
+
 }
 @enduml
 
