@@ -350,6 +350,17 @@ UIImagePickerController *imagePicker;
     [self.descriptionTextView resignFirstResponder];
 }
 
+/**
+ * returns a unique photo Id
+ */
+-(int)nextPhotoId
+{
+    int photoId = [[NSUserDefaults standardUserDefaults] integerForKey:@"PhotoID"];
+    [[NSUserDefaults standardUserDefaults] setInteger:photoId + 1 forKey:@"PhotoID"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    return photoId;
+}
+
 # pragma mark - IBActions
 
 /**
@@ -376,9 +387,10 @@ UIImagePickerController *imagePicker;
         // setting up the Location object and importing it to the database
         // creating a new location object (as it is a MANAGER object the creation process differs from standard alloc-init)
         location = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:self.managedObjectContext];
+        
+        // setting the new location photo id to -1
+        location.photoId = [NSNumber numberWithInt:-1];
     }
-    
-    NSLog(@"%@", location.description);
     
     // setting up location object properties
     location.locationDescription = descriptionText;
@@ -387,6 +399,27 @@ UIImagePickerController *imagePicker;
     location.longitude = [NSNumber numberWithDouble:self.coordinate.longitude];
     location.date = date;
     location.placemark = self.placemark;
+
+    // saving the user's picked photo in the app's documents directory (in case user did select an image)
+    if(image != nil)
+    {
+        // if the location doesn't have a photo we need to assign a new ID
+        // (ie, if the location already has a photo, which happens when editing a location, we keep the photo ID and replaced only the image)
+        if(![location hasPhoto])
+        {
+            location.photoId = [NSNumber numberWithInt:[self nextPhotoId]];
+        }
+        
+        // converting the image to a png format
+        NSData *data = UIImagePNGRepresentation(image);
+        
+        // probing for any error
+        NSError *error;
+        if(![data writeToFile:[location photoPath] options:NSDataWritingAtomic error:&error])
+        {
+            NSLog(@"Error writing to file!");
+        }
+    }
     
     // saving to SQLite with error verification
     NSError *error;
@@ -398,8 +431,6 @@ UIImagePickerController *imagePicker;
         [(id)[[UIApplication sharedApplication] delegate] performSelector:@selector(fatalCoreDataError:) withObject:error];
         return;
     }
-    
-    NSLog(@"%@", location.description);
 
     // calling close screen
     // we can't just call closeScreen as we have to waint until the animation finishes; as the animation takes 0.3 seconds we give it another 0.3 and set the delay to 0.6

@@ -17,6 +17,7 @@
 @dynamic locationDescription;
 @dynamic category;
 @dynamic placemark;
+@dynamic photoId;
 
 
 #pragma mark - MKAnnotation
@@ -51,4 +52,47 @@
 {
     return self.category;
 }
+
+
+#pragma mark - class methods
+
+/**
+ * verifiies if a Location object has a photo associated with it
+ * (returns true if it's ID is != than -1)
+ */
+-(BOOL)hasPhoto
+{
+    return (self.photoId != nil) && ([self.photoId intValue] != -1);
+}
+
+/**
+ * returns the full path to the png file corresponding to the photo
+ */
+-(NSString *)photoPath
+{
+    // every photo will have a name "Photo-XXX.png", where XXX is the ID
+    NSString *fileName = [NSString stringWithFormat:@"Photo-%d.png", [self.photoId intValue]];
+    return [[self documentsDirectory] stringByAppendingPathComponent:fileName];
+}
+
+/**
+ * returns the app's Document's directory
+ */
+-(NSString *)documentsDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [paths objectAtIndex:0];
+}
+
+/**
+ * returns a UIImage object corresponding the photo; that image is loaded from the app's document's directory
+ */
+-(UIImage *)photoImage
+{
+    NSAssert(self.photoId != nil, @"No photoID set!");
+    NSAssert([self.photoId intValue] != -1, @"PhotoID is -1!");
+    
+    return [UIImage imageWithContentsOfFile:[self photoPath]];
+}
+
 @end
