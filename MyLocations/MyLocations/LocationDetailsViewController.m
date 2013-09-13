@@ -65,6 +65,12 @@ UIImage *image;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
     }
     
+    // calling showImage when we already have an image (this only happens in low-memory situations)
+    if(image != nil)
+    {
+        [self showImage:image];
+    }
+    
     // updating the text view text
     self.descriptionTextView.text = descriptionText;
     
@@ -102,6 +108,26 @@ UIImage *image;
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    
+    // the following simulates view unload in simulated memory warning situations
+    // (we're doing this as in iOS6 views do not unload from memory)
+    if([self isViewLoaded] && self.view.window == nil)
+    {
+        self.view = nil;
+    }
+    
+    // setting all outlets to nil to save memory
+    if(![self isViewLoaded])
+    {
+        self.descriptionTextView = nil;
+        self.categoryLabel = nil;
+        self.latitudeLabel = nil;
+        self.longitudeLabel = nil;
+        self.addressLabel = nil;
+        self.dateLabel = nil;
+        self.imageView = nil;
+        self.photoLabel = nil;
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -500,11 +526,15 @@ UIImage *image;
 {
     // the info dictionary contains information regarding the object containing the image picked by the user and we'll use the image selected and edited by the user
     image = [info objectForKey:UIImagePickerControllerEditedImage];
-    // showing the image
-    [self showImage:image];
     
-    // this call is necessary to adjust the photo cell height
-    [self.tableView reloadData];
+    // first we check if view is loaded (this handles low memory situations
+    if([self isViewLoaded])
+    {
+        // showing the image
+        [self showImage:image];
+        // this call is necessary to adjust the photo cell height
+        [self.tableView reloadData];
+    }
     
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
