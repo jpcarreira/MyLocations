@@ -31,6 +31,12 @@ NSDate *date;
 // ivar to store to object containing the photo
 UIImage *image;
 
+// ivar for the action sheet
+UIActionSheet *actionSheet;
+
+// ivar for the imagePicker
+UIImagePickerController *imagePicker;
+
 # pragma mark - inits
 
 /**
@@ -43,8 +49,17 @@ UIImage *image;
         descriptionText = @"";
         categoryName = @"No Category";
         date = [NSDate date];
+    
+        // setting this view controller has observer for UIApplicationDidEnterBackgroundNotification so that NSNotificationCenter can call applicationDidEnterBackground when home button is pressed when the action sheet or image picker are on the screen
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
     }
     return self;
+}
+
+-(void)dealloc
+{
+    // removing the observer (after the tag! button is pressed)
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
 }
 
 
@@ -243,7 +258,7 @@ UIImage *image;
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
         // presents the action sheet
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+        actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:nil
                                       delegate:self
                                       cancelButtonTitle:@"Cancel"
@@ -264,7 +279,7 @@ UIImage *image;
 -(void)choosePhotoFromLibrary
 {
     // UIImagePickerController is a view controller that allows to take new pictures or picking them from the library
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker = [[UIImagePickerController alloc] init];
     
     // setting this LocationDetailsViewController as delegate for UIImagePickerController
     // (this way, end the user closes the image picker screen the delegate methods will pass information to this LocationDetailsViewController)
@@ -286,7 +301,7 @@ UIImage *image;
 -(void)takePhoto
 {
     // UIImagePickerController is a view controller that allows to take new pictures or picking them from the library
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker = [[UIImagePickerController alloc] init];
     
     // setting this LocationDetailsViewController as delegate for UIImagePickerController
     // (this way, end the user closes the image picker screen the delegate methods will pass information to this LocationDetailsViewController)
@@ -316,6 +331,24 @@ UIImage *image;
     self.photoLabel.hidden = YES;
 }
 
+-(void)applicationDidEnterBackground
+{
+    // dismissing this view controller when we have a image picker on the screen
+    if(imagePicker != nil)
+    {
+        [self.navigationController dismissViewControllerAnimated:NO completion:nil];
+        imagePicker = nil;
+    }
+    
+    // the same for the action sheet
+    if(actionSheet != nil)
+    {
+        [actionSheet dismissWithClickedButtonIndex:actionSheet.cancelButtonIndex animated:NO];
+        actionSheet = nil;
+    }
+    
+    [self.descriptionTextView resignFirstResponder];
+}
 
 # pragma mark - IBActions
 
@@ -535,13 +568,18 @@ UIImage *image;
         // this call is necessary to adjust the photo cell height
         [self.tableView reloadData];
     }
-    
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    
+    // setting to nil so we don't keep a reference to something that no longer exists
+    imagePicker = nil;
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    
+    // setting to nil so we don't keep a reference to something that no longer exists
+    imagePicker = nil;
 }
 
 
@@ -557,6 +595,9 @@ UIImage *image;
     {
         [self choosePhotoFromLibrary];
     }
+    
+    // setting to nil so we don't keep a reference to something that no longer exists
+    actionSheet = nil;
 }
 
 @end
