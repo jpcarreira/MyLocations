@@ -17,7 +17,7 @@
 
 @implementation LocationDetailsViewController
 
-@synthesize descriptionTextView, categoryLabel, latitudeLabel, longitudeLabel, addressLabel, dateLabel, coordinate, placemark, managedObjectContext, locationToEdit;
+@synthesize descriptionTextView, categoryLabel, latitudeLabel, longitudeLabel, addressLabel, dateLabel, coordinate, placemark, managedObjectContext, locationToEdit, imageView, photoLabel;
 
 // ivar for user's description
 NSString *descriptionText;
@@ -28,6 +28,8 @@ NSString *categoryName;
 // ivar to store current date (neeeded to store in Location object to import for DB)
 NSDate *date;
 
+// ivar to store to object containing the photo
+UIImage *image;
 
 # pragma mark - inits
 
@@ -274,6 +276,20 @@ NSDate *date;
     [self.navigationController presentViewController:imagePicker animated:YES completion:nil];
 }
 
+/**
+ * shows an image in the "add photo" cell and defines some of its properties
+ */
+-(void)showImage:(UIImage *)theImage
+{
+    self.imageView.image = theImage;
+    // as we have set as hidden in the storyboard now we revert it
+    self.imageView.hidden = NO;
+    // defining a frame for the image
+    self.imageView.frame = CGRectMake(10, 10, 260, 260);
+    // hiding the photo label
+    self.photoLabel.hidden = YES;
+}
+
 
 # pragma mark - IBActions
 
@@ -356,8 +372,23 @@ NSDate *date;
         return 88;
     }
     
+    // height for photo cell
+    else if(indexPath.section == 1)
+    {
+        // if there's no image the size is the default 44
+        if(self.imageView.hidden == YES)
+        {
+            return 44;
+        }
+        // if we have a image we adjust it's size a little more than the value defined in showImage
+        else
+        {
+            return 280;
+        }
+    }
+    
     // height for address cell
-    if(indexPath.section == 2 && indexPath.row == 2)
+    else if(indexPath.section == 2 && indexPath.row == 2)
     {
         // CGRech is a struct that defines a rectangle
         // CGRectMake takes 4 parameters: X coordinate, Y coordinate, width and height
@@ -462,8 +493,19 @@ NSDate *date;
 
 #pragma mark - UIImagePickerControllerDelegate
 
+/**
+ * this method is called when the user selects an image
+ */
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    // the info dictionary contains information regarding the object containing the image picked by the user and we'll use the image selected and edited by the user
+    image = [info objectForKey:UIImagePickerControllerEditedImage];
+    // showing the image
+    [self showImage:image];
+    
+    // this call is necessary to adjust the photo cell height
+    [self.tableView reloadData];
+    
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 

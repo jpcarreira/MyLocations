@@ -195,6 +195,10 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="aya-ZB-NBx">
+                                                    <rect key="frame" x="115" y="0.0" width="140" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -328,8 +332,10 @@
                         <outlet property="categoryLabel" destination="hvW-dW-0wW" id="efZ-Rn-dcW"/>
                         <outlet property="dateLabel" destination="rYI-3g-tcl" id="BGS-9C-jxE"/>
                         <outlet property="descriptionTextView" destination="Rwy-xH-RsJ" id="aKY-bk-nmU"/>
+                        <outlet property="imageView" destination="aya-ZB-NBx" id="7me-Fe-C8M"/>
                         <outlet property="latitudeLabel" destination="YBm-zE-fQ3" id="78s-CV-FjM"/>
                         <outlet property="longitudeLabel" destination="2tu-Jh-2Yc" id="3iK-XF-Gxs"/>
+                        <outlet property="photoLabel" destination="4kr-pi-mtf" id="Tul-ve-Lvb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGR-xY-jjq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -542,8 +548,10 @@
                 <relationship kind="outlet" name="categoryLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="descriptionTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="latitudeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="longitudeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photoLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="MapViewController" superclassName="UIViewController">

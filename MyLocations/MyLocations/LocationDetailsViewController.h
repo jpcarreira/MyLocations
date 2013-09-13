@@ -55,6 +55,12 @@
 // object needed to edit location
 @property (nonatomic, strong) Location *locationToEdit;
 
+// imageview to display photo
+@property (nonatomic, strong) IBOutlet UIImageView *imageView;
+
+// photo label
+@property (nonatomic, strong) IBOutlet UILabel *photoLabel;
+
 // done button in the navigation bar
 -(IBAction)done:(id)sender;
 
