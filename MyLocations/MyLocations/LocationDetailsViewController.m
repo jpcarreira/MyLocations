@@ -432,6 +432,9 @@ UIImagePickerController *imagePicker;
         {
             NSLog(@"Error writing to file!");
         }
+        
+        // this fixes the bug of displaying the same image on all locations after adding a new location with a image
+        image = nil;
     }
     
     // saving to SQLite with error verification

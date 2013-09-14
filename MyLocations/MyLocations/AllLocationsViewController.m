@@ -149,6 +149,10 @@ NSFetchedResultsController *fetchedResultsController;
     {
         // getting the object from the index path and deleting it from the data store
         Location *location = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        // deleting the corresponding file
+        [location removePhotoFile];
+        
         [self.managedObjectContext deleteObject:location];
         // at this points the NSFetchedResultsController should be triggered to send a message to NSFetchedResultsChangeDelete which will update the table by deleting it's row
         
