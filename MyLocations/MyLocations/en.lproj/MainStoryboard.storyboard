@@ -414,25 +414,30 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lZN-qd-6iR">
-                                            <rect key="frame" x="15" y="7" width="290" height="21"/>
+                                            <rect key="frame" x="74" y="7" width="232" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uGe-vA-rYs">
-                                            <rect key="frame" x="15" y="36" width="280" height="21"/>
+                                            <rect key="frame" x="74" y="36" width="232" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="q9W-2B-iVX">
+                                            <rect key="frame" x="3" y="0.0" width="66" height="66"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
                                     <outlet property="addressLabel" destination="uGe-vA-rYs" id="qoI-Zu-Si6"/>
                                     <outlet property="descriptionLabel" destination="lZN-qd-6iR" id="IJy-YD-6Xd"/>
+                                    <outlet property="imageView" destination="q9W-2B-iVX" id="Dzb-uo-csk"/>
                                     <segue destination="h4c-Tb-aZb" kind="modal" identifier="EditLocation" id="UAd-CV-2Bv"/>
                                 </connections>
                             </tableViewCell>
@@ -537,6 +542,7 @@
             <relationships>
                 <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
             </relationships>
         </class>
         <class className="LocationDetailsViewController" superclassName="UITableViewController">
@@ -569,6 +575,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="XCO-rs-EDT"/>
+        <segue reference="UAd-CV-2Bv"/>
     </inferredMetricsTieBreakers>
 </document>

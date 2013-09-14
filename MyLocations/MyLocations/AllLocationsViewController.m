@@ -201,6 +201,16 @@ NSFetchedResultsController *fetchedResultsController;
     {
         locationCell.addressLabel.text = [NSString stringWithFormat:@"Lat: %.8f, Long: %.8f", [location.latitude doubleValue], [location.longitude doubleValue]];
     }
+    
+    // setting the thumbnail image
+    UIImage *image = nil;
+    // in case location has a photo we save it in the local var
+    if([location hasPhoto])
+    {
+        image = [location photoImage];
+    }
+    // displaying the thumbail
+    locationCell.imageView.image = image;
 }
 
 -(NSFetchedResultsController *)fetchedResultsController
