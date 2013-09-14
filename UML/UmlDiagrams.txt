@@ -77,13 +77,19 @@ class LocationDetailsViewController<<UITextViewDelegate, CategoryPickerViewContr
 	+CLPlacemark *placemark
 	+NSManagedObjectContext *managedObjectContext
 	+Location *locationToEdit
+	+UIImageView *imageView
+	+UILabel *photoLabel
 	-NSString *descriptionText
 	-NString *categoryName
 	-NSDate *date
+	-UIImage *image
+	-UIActionSheet *actionSheet
+	-UIImagePickerController *imagePicker
 	__
 	+(IBAction)done:(id)sender
 	+(IBAction)cancel:(id)sender
 	-(id)initWithCoder:(NSCoder *)aDecoder
+	-(void)dealloc
 	-(void)viewDidLoad
 	-(void)didReceiveMemoryWarning
 	-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -93,6 +99,12 @@ class LocationDetailsViewController<<UITextViewDelegate, CategoryPickerViewContr
 	-(NSString *)formatDate:(NSDate *)theDate
 	-(void)hideKeyboard:(UIGestureRecognizer *)gestureRecognizer
 	-(void)setLocationToEdit:(Location *)newLocationToEdit
+	-(void)showPhotoMenu
+	-(void)choosePhotoFromLibrary
+	-(void)takePhoto
+	-(void)showImage:(UIImage *)theImage
+	-(void)applicationDidEnterBackground
+	-(int)nextPhotoId
 	.. <b>UITableView delegate methods </b> ..
 	-(CGFloat)tableView:(UITableView *)theTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 	-(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,6 +113,11 @@ class LocationDetailsViewController<<UITextViewDelegate, CategoryPickerViewContr
 	-(BOOL)textView:(UITextView *)theTextView shouldChangeTextInRange:(NSRange *)range replacementText:(NSString *)text
 	-(void)textViewDidEndEditing:(UITextView *)theTextView
 	-(void)categoryPicker:(CategoryPickerViewController *)picker didPickCategory:(NSString *)theCategoryName
+	.. <b>UIImagePickerController delegate methods </b> ..
+	-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+	-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+	.. <b>UIActionSheet delegate methods </b> ..
+	-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 }
 
 class CategoryPickerViewController{
@@ -166,11 +183,23 @@ class Location<<NSManagedObject>>{
 	+NSString *locationDescription
 	+NSString *category
 	+CLPlacemark *placemark
+	+NSNumber *photoId
+	__
+	-(CLLocationCoordinate2D)coordinate
+	-(NSString *)title
+	-(NSString *)subtitle
+	-(BOOL)hasPhoto
+	-(NSString *)photoPath
+	-(NSString *)documentsDirectory
+	-(UIImage *)photoImage
+	-(void)removePhotoFile
+
 }
 
 class LocationCell{
 	+UILabel *descriptionLabel;
 	+UILabel *addressLabel;
+	+UIImageView *imageView
 	__
 	- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 	- (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -198,6 +227,10 @@ class MapViewController{
 	+(IBAction)showUser
 	+(IBAction)showLocations
 
+}
+
+class UIImage+Resize{
+	-(UIImage *)resizedImageWithBounds:(CGSize)bounds;
 }
 @enduml
 
