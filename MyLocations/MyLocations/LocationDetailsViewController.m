@@ -78,6 +78,19 @@ UIImagePickerController *imagePicker;
         
         // setting the bar button to "done" (using target-action pattern)
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+        
+        // if the location being edited has a photo then we display it
+        // (we also verify image == nil as viewDidLoad may be called after a low-memory situation)
+        if([self.locationToEdit hasPhoto] && image == nil)
+        {
+            UIImage *existingImage = [self.locationToEdit photoImage];
+            
+            // this is a defensive condition, to protect from situations where the image doesn't exist in the documents folder or is corrupted
+            if(existingImage != nil)
+            {
+                [self showImage:existingImage];
+            }
+        }
     }
     
     // calling showImage when we already have an image (this only happens in low-memory situations)
