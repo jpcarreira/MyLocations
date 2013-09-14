@@ -13,6 +13,8 @@
 #import "LocationCell.h"
 // import needed to reuse the edit screen
 #import "LocationDetailsViewController.h"
+// need to resize image
+#import "UIImage+Resize.h"
 
 @interface AllLocationsViewController ()
 
@@ -208,6 +210,12 @@ NSFetchedResultsController *fetchedResultsController;
     if([location hasPhoto])
     {
         image = [location photoImage];
+        
+        // resizing image to 66 x 66
+        if(image != nil)
+        {
+            image = [image resizedImageWithBounds:CGSizeMake(66, 66)];
+        }
     }
     // displaying the thumbail
     locationCell.imageView.image = image;

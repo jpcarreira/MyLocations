@@ -35,6 +35,7 @@
 		62C9EE0B17D038AE007B189F /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C9EE0A17D038AE007B189F /* LocationCell.m */; };
 		62DC402217C90C6B00AD4BFB /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DC402017C90C6B00AD4BFB /* Checkmark.png */; };
 		62DC402317C90C6B00AD4BFB /* Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DC402117C90C6B00AD4BFB /* Checkmark@2x.png */; };
+		62EA440A17E49962001840E2 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EA440917E49962001840E2 /* UIImage+Resize.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,8 @@
 		62C9EE0A17D038AE007B189F /* LocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
 		62DC402017C90C6B00AD4BFB /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Checkmark.png; path = "../../../The iOS Apprentice Bundle/Chapter 3 - MyLocations/Resources/Hud Images/Checkmark.png"; sourceTree = "<group>"; };
 		62DC402117C90C6B00AD4BFB /* Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Checkmark@2x.png"; path = "../../../The iOS Apprentice Bundle/Chapter 3 - MyLocations/Resources/Hud Images/Checkmark@2x.png"; sourceTree = "<group>"; };
+		62EA440817E49962001840E2 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		62EA440917E49962001840E2 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +158,8 @@
 				6266A3DF17C2838400B53753 /* second.png */,
 				6266A3E117C2838400B53753 /* second@2x.png */,
 				6266A3C117C2838400B53753 /* Supporting Files */,
+				62EA440817E49962001840E2 /* UIImage+Resize.h */,
+				62EA440917E49962001840E2 /* UIImage+Resize.m */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 				6246EDEA17CE812600FA5F3B /* AllLocationsViewController.m in Sources */,
 				62C9EE0B17D038AE007B189F /* LocationCell.m in Sources */,
 				626DD68A17DF9773003F3340 /* MapViewController.m in Sources */,
+				62EA440A17E49962001840E2 /* UIImage+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
