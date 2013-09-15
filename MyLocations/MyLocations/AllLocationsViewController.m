@@ -271,11 +271,13 @@ NSFetchedResultsController *fetchedResultsController;
     }
 }
 
+
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    // test method to check table cell size
+    //cell.contentView.backgroundColor = [UIColor blueColor];
 }
 
 
