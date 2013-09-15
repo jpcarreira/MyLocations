@@ -10,6 +10,7 @@
 //#import "CategoryPickerViewController.h"
 #import "HudView.h"
 #import "Location.h"
+#import "NSMutableString+AddText.h"
 
 @interface LocationDetailsViewController ()
 
@@ -180,22 +181,37 @@ UIImagePickerController *imagePicker;
 
 /**
  * gets an address string from a placemark object
+ * (using NSMutableString+AddText)
  */
 -(NSString *)stringFromPlacemark:(CLPlacemark *)thePlacemark
 {
-    return [NSString stringWithFormat:@"%@ %@\n%@ %@ %@\n%@",
-            // house number
-            thePlacemark.subThoroughfare,
-            // street name
-            thePlacemark.thoroughfare,
-            // city
-            thePlacemark.locality,
-            // state / province
-            thePlacemark.administrativeArea,
-            // zip code / postal code
-            thePlacemark.postalCode,
-            // country
-            thePlacemark.country];
+    /*
+     line1: subthoroughfare thoroughfare
+     line2: locality administrativearea postalcode
+     line3: country
+     */
+    
+    // building line 1
+    NSMutableString *line1 = [NSMutableString stringWithCapacity:100];
+    [line1 addText:thePlacemark.subThoroughfare withSeparator:@" "];
+    [line1 addText:thePlacemark.thoroughfare withSeparator:@" "];
+    
+    // building line 2
+    NSMutableString *line2 = [NSMutableString stringWithCapacity:100];
+    [line2 addText:thePlacemark.locality withSeparator:@" "];
+    [line2 addText:thePlacemark.administrativeArea withSeparator:@" "];
+    [line2 addText:thePlacemark.postalCode withSeparator:@" "];
+    
+    // buiding line 3
+    NSMutableString *line3 = [NSMutableString stringWithCapacity:100];
+    [line3 addText:thePlacemark.country withSeparator:@" "];
+    
+    // building the final string
+    [line1 appendString:@"\n"];
+    [line1 appendString:line2];
+    [line1 appendString:@"\n"];
+    [line1 appendString:line3];
+    return line1;
 }
 
 

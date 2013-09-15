@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		620E233E17E5FC9300727633 /* NSMutableString+AddText.m in Sources */ = {isa = PBXBuildFile; fileRef = 620E233D17E5FC9300727633 /* NSMutableString+AddText.m */; };
 		6246EDEA17CE812600FA5F3B /* AllLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6246EDE917CE812600FA5F3B /* AllLocationsViewController.m */; };
 		6266A3BB17C2838400B53753 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6266A3BA17C2838400B53753 /* UIKit.framework */; };
 		6266A3BD17C2838400B53753 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6266A3BC17C2838400B53753 /* Foundation.framework */; };
@@ -39,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		620E233C17E5FC9300727633 /* NSMutableString+AddText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+AddText.h"; sourceTree = "<group>"; };
+		620E233D17E5FC9300727633 /* NSMutableString+AddText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+AddText.m"; sourceTree = "<group>"; };
 		6246EDE817CE812500FA5F3B /* AllLocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllLocationsViewController.h; sourceTree = "<group>"; };
 		6246EDE917CE812600FA5F3B /* AllLocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllLocationsViewController.m; sourceTree = "<group>"; };
 		6266A3B717C2838400B53753 /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,6 +163,8 @@
 				6266A3C117C2838400B53753 /* Supporting Files */,
 				62EA440817E49962001840E2 /* UIImage+Resize.h */,
 				62EA440917E49962001840E2 /* UIImage+Resize.m */,
+				620E233C17E5FC9300727633 /* NSMutableString+AddText.h */,
+				620E233D17E5FC9300727633 /* NSMutableString+AddText.m */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 				62C9EE0B17D038AE007B189F /* LocationCell.m in Sources */,
 				626DD68A17DF9773003F3340 /* MapViewController.m in Sources */,
 				62EA440A17E49962001840E2 /* UIImage+Resize.m in Sources */,
+				620E233E17E5FC9300727633 /* NSMutableString+AddText.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

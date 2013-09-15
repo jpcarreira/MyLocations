@@ -15,6 +15,7 @@
 #import "LocationDetailsViewController.h"
 // need to resize image
 #import "UIImage+Resize.h"
+#import "NSMutableString+AddText.h"
 
 @interface AllLocationsViewController ()
 
@@ -193,10 +194,17 @@ NSFetchedResultsController *fetchedResultsController;
     // checking if we have a placemark
     if(location.placemark != nil)
     {
-        locationCell.addressLabel.text = [NSString stringWithFormat:@"%@ %@\n%@",
-                                          location.placemark.subThoroughfare,
-                                          location.placemark.thoroughfare,
-                                          location.placemark.locality];
+        /*
+         line1: subthoroughfare thoroughfare, locality
+         */
+        
+        // using NSMutableString+AddText
+        NSMutableString *string = [NSMutableString stringWithCapacity:100];
+        [string addText:location.placemark.subThoroughfare withSeparator:@" "];
+        [string addText:location.placemark.thoroughfare withSeparator:@" "];
+        [string addText:location.placemark.locality withSeparator:@", "];
+        
+        locationCell.addressLabel.text = string;
     }
     // else we give it's coordinates
     else

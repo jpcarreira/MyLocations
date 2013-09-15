@@ -10,6 +10,7 @@
 #import "CurrentLocationViewController.h"
 // import needed for segue
 #import "LocationDetailsViewController.h"
+#import "NSMutableString+AddText.h"
 
 @interface CurrentLocationViewController ()
 
@@ -257,6 +258,7 @@ NSError *lastGeocodingError;
 
 /**
  * gets an address string from a placemark object
+ * (using NSMutableString+AddText)
  */
 -(NSString *)stringFromPlacemark:(CLPlacemark *)thePlacemark
 {
@@ -266,20 +268,21 @@ NSError *lastGeocodingError;
      line3: country
      */
     
+    
     // building line 1
     NSMutableString *line1 = [NSMutableString stringWithCapacity:100];
-    [self addText:thePlacemark.subThoroughfare toLine:line1 withSeparator:@" "];
-    [self addText:thePlacemark.thoroughfare toLine:line1 withSeparator:@" "];
+    [line1 addText:thePlacemark.subThoroughfare withSeparator:@" "];
+    [line1 addText:thePlacemark.thoroughfare withSeparator:@" "];
     
     // building line 2
     NSMutableString *line2 = [NSMutableString stringWithCapacity:100];
-    [self addText:thePlacemark.locality toLine:line2 withSeparator:@" "];
-    [self addText:thePlacemark.administrativeArea toLine:line2 withSeparator:@" "];
-    [self addText:thePlacemark.postalCode toLine:line2 withSeparator:@" "];
+    [line2 addText:thePlacemark.locality withSeparator:@" "];
+    [line2 addText:thePlacemark.administrativeArea withSeparator:@" "];
+    [line2 addText:thePlacemark.postalCode withSeparator:@" "];
     
     // buiding line 3
     NSMutableString *line3 = [NSMutableString stringWithCapacity:100];
-    [self addText:thePlacemark.country toLine:line3 withSeparator:@" "];
+    [line3 addText:thePlacemark.country withSeparator:@" "];
     
     // building the final string
     [line1 appendString:@"\n"];
@@ -287,22 +290,6 @@ NSError *lastGeocodingError;
     [line1 appendString:@"\n"];
     [line1 appendString:line3];
     return line1;
-}
-
-/**
- * auxiliary method to use with stringFromPlacemark
- * adds text to a mutable string with an optional separator
- */
--(void)addText:(NSString *)text toLine:(NSMutableString *)line withSeparator:(NSString *)separator
-{
-    if(text != nil)
-    {
-        if([line length] > 0)
-        {
-            [line appendString:separator];
-        }
-        [line appendString:text];
-    }
 }
 
 /**
