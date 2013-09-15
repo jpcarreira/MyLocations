@@ -8,7 +8,7 @@
         <scene sceneID="foa-wg-Ykf">
             <objects>
                 <navigationController definesPresentationContext="YES" id="ih3-Kz-Lci" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tag" id="3Sa-Ji-T0U"/>
+                    <tabBarItem key="tabBarItem" title="Tag" image="Tag.png" id="3Sa-Ji-T0U"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="S6T-s4-yTZ">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -386,7 +386,7 @@
         <scene sceneID="vB1-KE-hzd">
             <objects>
                 <navigationController definesPresentationContext="YES" id="2ic-Gh-u9X" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Locations" id="jlT-G3-KDE"/>
+                    <tabBarItem key="tabBarItem" title="Locations" image="Locations.png" id="jlT-G3-KDE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="3YL-Gs-fK2">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -467,12 +467,12 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Map" id="PoP-Jh-NNi">
-                                        <barButtonItem key="leftBarButtonItem" title="Locations" id="eXd-Z7-TQe">
+                                        <barButtonItem key="leftBarButtonItem" image="Pin.png" id="eXd-Z7-TQe">
                                             <connections>
                                                 <action selector="showLocations" destination="PS3-Ta-Ofl" id="dtE-0r-hdA"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="User" id="p2Z-UC-quV">
+                                        <barButtonItem key="rightBarButtonItem" image="User.png" id="p2Z-UC-quV">
                                             <connections>
                                                 <action selector="showUser" destination="PS3-Ta-Ofl" id="ZnO-Dl-WEY"/>
                                             </connections>
@@ -490,7 +490,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" id="Wfn-is-aKr"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="Map.png" id="Wfn-is-aKr"/>
                     <connections>
                         <outlet property="mapView" destination="mOU-2F-MWh" id="E9s-TK-jfo"/>
                         <segue destination="h4c-Tb-aZb" kind="modal" identifier="EditLocation" id="knq-VS-zCJ"/>
@@ -519,6 +519,13 @@
             <point key="canvasLocation" x="1815" y="525"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Locations.png" width="30" height="30"/>
+        <image name="Map.png" width="30" height="30"/>
+        <image name="Pin.png" width="24" height="24"/>
+        <image name="Tag.png" width="30" height="30"/>
+        <image name="User.png" width="24" height="24"/>
+    </resources>
     <classes>
         <class className="AllLocationsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AllLocationsViewController.h"/>
@@ -576,6 +583,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="UAd-CV-2Bv"/>
+        <segue reference="knq-VS-zCJ"/>
     </inferredMetricsTieBreakers>
 </document>
