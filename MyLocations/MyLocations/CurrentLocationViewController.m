@@ -260,19 +260,66 @@ NSError *lastGeocodingError;
  */
 -(NSString *)stringFromPlacemark:(CLPlacemark *)thePlacemark
 {
-    return [NSString stringWithFormat:@"%@ %@\n%@ %@ %@\n%@",
-            // house number
-            thePlacemark.subThoroughfare,
-            // street name
-            thePlacemark.thoroughfare,
-            // city
-            thePlacemark.locality,
-            // state / province
-            thePlacemark.administrativeArea,
-            // zip code / postal code
-            thePlacemark.postalCode,
-            // country
-            thePlacemark.country];
+    /*
+     line1: subthoroughfare thoroughfare
+     line2: locality administrativearea postalcode
+     line3: country
+     */
+    
+    // building line 1
+    NSMutableString *line1 = [NSMutableString stringWithCapacity:100];
+    // if the placemark has a subThoroughfare, we'll add it to line1
+    if(thePlacemark.subThoroughfare != nil)
+    {
+        [line1 appendString:thePlacemark.subThoroughfare];
+    }
+    // the same for thoroughfare
+    if(thePlacemark.thoroughfare != nil)
+    {
+        // adding a space if there is a subthoroughfare
+        if([line1 length] > 0)
+        {
+            [line1 appendString:@" "];
+        }
+        [line1 appendString:thePlacemark.thoroughfare];
+    }
+    
+    // building line 2
+    NSMutableString *line2 = [NSMutableString stringWithCapacity:100];
+    if(thePlacemark.locality != nil)
+    {
+        [line2 appendString:thePlacemark.locality];
+    }
+    if(thePlacemark.administrativeArea != nil)
+    {
+        if([line2 length] > 0)
+        {
+            [line2 appendString:@" "];
+        }
+        [line2 appendString:thePlacemark.administrativeArea];
+    }
+    if(thePlacemark.postalCode != nil)
+    {
+        if([line2 length] > 0)
+        {
+            [line2 appendString:@" "];
+        }
+        [line2 appendString:thePlacemark.postalCode];
+    }
+    
+    // buiding line 3
+    NSMutableString *line3 = [NSMutableString stringWithCapacity:100];
+    if(thePlacemark.country != nil)
+    {
+        [line3 appendString:thePlacemark.country];
+    }
+    
+    // building the final string
+    [line1 appendString:@"\n"];
+    [line1 appendString:line2];
+    [line1 appendString:@"\n"];
+    [line1 appendString:line3];
+    return line1;
 }
 
 /**

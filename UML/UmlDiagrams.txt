@@ -5,6 +5,7 @@
 @startuml Diagrams/use_case.png
 left to right direction
 User --> (obtain GPS location \nand physical address)
+User --> (visualizes a list of all saved locations)
 User --> (visualizes current and saved locations \nas pins in a map)
 (obtain GPS location \nand physical address) ..> (save location) : extends 
 (obtain GPS location \nand physical address) ..> (add category to location) : extends
@@ -12,6 +13,7 @@ User --> (visualizes current and saved locations \nas pins in a map)
 (obtain GPS location \nand physical address) ..> (add photo) : extends
 (visualizes current and saved locations \nas pins in a map) ..> (add category to location) : extends
 (visualizes current and saved locations \nas pins in a map) ..> (add text description) : extends
+(visualizes a list of all saved locations)
 @enduml 
 
 
