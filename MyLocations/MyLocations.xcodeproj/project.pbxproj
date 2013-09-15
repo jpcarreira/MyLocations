@@ -165,13 +165,13 @@
 				6266A3D217C2838400B53753 /* MainStoryboard.storyboard */,
 				626DD68817DF9773003F3340 /* MapViewController.h */,
 				626DD68917DF9773003F3340 /* MapViewController.m */,
+				620E233C17E5FC9300727633 /* NSMutableString+AddText.h */,
+				620E233D17E5FC9300727633 /* NSMutableString+AddText.m */,
 				6266A3DF17C2838400B53753 /* second.png */,
 				6266A3E117C2838400B53753 /* second@2x.png */,
 				6266A3C117C2838400B53753 /* Supporting Files */,
 				62EA440817E49962001840E2 /* UIImage+Resize.h */,
 				62EA440917E49962001840E2 /* UIImage+Resize.m */,
-				620E233C17E5FC9300727633 /* NSMutableString+AddText.h */,
-				620E233D17E5FC9300727633 /* NSMutableString+AddText.m */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
