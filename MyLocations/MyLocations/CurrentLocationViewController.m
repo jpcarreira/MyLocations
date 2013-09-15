@@ -268,51 +268,18 @@ NSError *lastGeocodingError;
     
     // building line 1
     NSMutableString *line1 = [NSMutableString stringWithCapacity:100];
-    // if the placemark has a subThoroughfare, we'll add it to line1
-    if(thePlacemark.subThoroughfare != nil)
-    {
-        [line1 appendString:thePlacemark.subThoroughfare];
-    }
-    // the same for thoroughfare
-    if(thePlacemark.thoroughfare != nil)
-    {
-        // adding a space if there is a subthoroughfare
-        if([line1 length] > 0)
-        {
-            [line1 appendString:@" "];
-        }
-        [line1 appendString:thePlacemark.thoroughfare];
-    }
+    [self addText:thePlacemark.subThoroughfare toLine:line1 withSeparator:@" "];
+    [self addText:thePlacemark.thoroughfare toLine:line1 withSeparator:@" "];
     
     // building line 2
     NSMutableString *line2 = [NSMutableString stringWithCapacity:100];
-    if(thePlacemark.locality != nil)
-    {
-        [line2 appendString:thePlacemark.locality];
-    }
-    if(thePlacemark.administrativeArea != nil)
-    {
-        if([line2 length] > 0)
-        {
-            [line2 appendString:@" "];
-        }
-        [line2 appendString:thePlacemark.administrativeArea];
-    }
-    if(thePlacemark.postalCode != nil)
-    {
-        if([line2 length] > 0)
-        {
-            [line2 appendString:@" "];
-        }
-        [line2 appendString:thePlacemark.postalCode];
-    }
+    [self addText:thePlacemark.locality toLine:line2 withSeparator:@" "];
+    [self addText:thePlacemark.administrativeArea toLine:line2 withSeparator:@" "];
+    [self addText:thePlacemark.postalCode toLine:line2 withSeparator:@" "];
     
     // buiding line 3
     NSMutableString *line3 = [NSMutableString stringWithCapacity:100];
-    if(thePlacemark.country != nil)
-    {
-        [line3 appendString:thePlacemark.country];
-    }
+    [self addText:thePlacemark.country toLine:line3 withSeparator:@" "];
     
     // building the final string
     [line1 appendString:@"\n"];
@@ -320,6 +287,22 @@ NSError *lastGeocodingError;
     [line1 appendString:@"\n"];
     [line1 appendString:line3];
     return line1;
+}
+
+/**
+ * auxiliary method to use with stringFromPlacemark
+ * adds text to a mutable string with an optional separator
+ */
+-(void)addText:(NSString *)text toLine:(NSMutableString *)line withSeparator:(NSString *)separator
+{
+    if(text != nil)
+    {
+        if([line length] > 0)
+        {
+            [line appendString:separator];
+        }
+        [line appendString:text];
+    }
 }
 
 /**
