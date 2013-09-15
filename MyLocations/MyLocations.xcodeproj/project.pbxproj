@@ -103,6 +103,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		620E235217E6115F00727633 /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Icon;
+			sourceTree = "<group>";
+		};
 		6266A3AE17C2838400B53753 = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +179,7 @@
 		6266A3C117C2838400B53753 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				620E235217E6115F00727633 /* Icon */,
 				62DC402417C90C8900AD4BFB /* Hud images */,
 				6266A3C217C2838400B53753 /* MyLocations-Info.plist */,
 				6266A3C317C2838400B53753 /* InfoPlist.strings */,
