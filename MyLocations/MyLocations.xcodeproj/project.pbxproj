@@ -32,6 +32,8 @@
 		620ED68217E65C6E00AD1CA0 /* YellowButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 620ED66A17E65C6E00AD1CA0 /* YellowButton@2x.png */; };
 		620ED68317E65C6E00AD1CA0 /* YellowButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 620ED66B17E65C6E00AD1CA0 /* YellowButtonPressed.png */; };
 		620ED68417E65C6E00AD1CA0 /* YellowButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 620ED66C17E65C6E00AD1CA0 /* YellowButtonPressed@2x.png */; };
+		620F0604185FA6A50056178D /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 620F0602185FA6A50056178D /* Checkmark.png */; };
+		620F0605185FA6A50056178D /* Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 620F0603185FA6A50056178D /* Checkmark@2x.png */; };
 		6246EDEA17CE812600FA5F3B /* AllLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6246EDE917CE812600FA5F3B /* AllLocationsViewController.m */; };
 		6266A3BB17C2838400B53753 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6266A3BA17C2838400B53753 /* UIKit.framework */; };
 		6266A3BD17C2838400B53753 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6266A3BC17C2838400B53753 /* Foundation.framework */; };
@@ -54,8 +56,6 @@
 		62BCFA7D17CD3AAC00E47106 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62BCFA7B17CD3AAC00E47106 /* DataModel.xcdatamodeld */; };
 		62BCFA8017CD3E2C00E47106 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BCFA7F17CD3E2C00E47106 /* Location.m */; };
 		62C9EE0B17D038AE007B189F /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C9EE0A17D038AE007B189F /* LocationCell.m */; };
-		62DC402217C90C6B00AD4BFB /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DC402017C90C6B00AD4BFB /* Checkmark.png */; };
-		62DC402317C90C6B00AD4BFB /* Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DC402117C90C6B00AD4BFB /* Checkmark@2x.png */; };
 		62EA440A17E49962001840E2 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EA440917E49962001840E2 /* UIImage+Resize.m */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +86,8 @@
 		620ED66A17E65C6E00AD1CA0 /* YellowButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YellowButton@2x.png"; sourceTree = "<group>"; };
 		620ED66B17E65C6E00AD1CA0 /* YellowButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YellowButtonPressed.png; sourceTree = "<group>"; };
 		620ED66C17E65C6E00AD1CA0 /* YellowButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YellowButtonPressed@2x.png"; sourceTree = "<group>"; };
+		620F0602185FA6A50056178D /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkmark.png; sourceTree = "<group>"; };
+		620F0603185FA6A50056178D /* Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkmark@2x.png"; sourceTree = "<group>"; };
 		6246EDE817CE812500FA5F3B /* AllLocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllLocationsViewController.h; sourceTree = "<group>"; };
 		6246EDE917CE812600FA5F3B /* AllLocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllLocationsViewController.m; sourceTree = "<group>"; };
 		6266A3B717C2838400B53753 /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,8 +122,6 @@
 		62BCFA7F17CD3E2C00E47106 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		62C9EE0917D038AE007B189F /* LocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCell.h; sourceTree = "<group>"; };
 		62C9EE0A17D038AE007B189F /* LocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
-		62DC402017C90C6B00AD4BFB /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Checkmark.png; path = "../../../The iOS Apprentice Bundle/Chapter 3 - MyLocations/Resources/Hud Images/Checkmark.png"; sourceTree = "<group>"; };
-		62DC402117C90C6B00AD4BFB /* Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Checkmark@2x.png"; path = "../../../The iOS Apprentice Bundle/Chapter 3 - MyLocations/Resources/Hud Images/Checkmark@2x.png"; sourceTree = "<group>"; };
 		62EA440817E49962001840E2 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		62EA440917E49962001840E2 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -263,8 +263,8 @@
 		62DC402417C90C8900AD4BFB /* Hud images */ = {
 			isa = PBXGroup;
 			children = (
-				62DC402017C90C6B00AD4BFB /* Checkmark.png */,
-				62DC402117C90C6B00AD4BFB /* Checkmark@2x.png */,
+				620F0602185FA6A50056178D /* Checkmark.png */,
+				620F0603185FA6A50056178D /* Checkmark@2x.png */,
 			);
 			name = "Hud images";
 			sourceTree = "<group>";
@@ -325,12 +325,11 @@
 				6266A3CF17C2838400B53753 /* Default@2x.png in Resources */,
 				6266A3D117C2838400B53753 /* Default-568h@2x.png in Resources */,
 				6266A3D417C2838400B53753 /* MainStoryboard.storyboard in Resources */,
-				62DC402217C90C6B00AD4BFB /* Checkmark.png in Resources */,
-				62DC402317C90C6B00AD4BFB /* Checkmark@2x.png in Resources */,
 				620ED66D17E65C6E00AD1CA0 /* Background.png in Resources */,
 				620ED66E17E65C6E00AD1CA0 /* Background@2x.png in Resources */,
 				620ED66F17E65C6E00AD1CA0 /* BlueButton.png in Resources */,
 				620ED67017E65C6E00AD1CA0 /* BlueButton@2x.png in Resources */,
+				620F0604185FA6A50056178D /* Checkmark.png in Resources */,
 				620ED67117E65C6E00AD1CA0 /* BlueButtonPressed.png in Resources */,
 				620ED67217E65C6E00AD1CA0 /* BlueButtonPressed@2x.png in Resources */,
 				620ED67317E65C6E00AD1CA0 /* Locations.png in Resources */,
@@ -342,6 +341,7 @@
 				620ED67917E65C6E00AD1CA0 /* Panel.png in Resources */,
 				620ED67A17E65C6E00AD1CA0 /* Panel@2x.png in Resources */,
 				620ED67B17E65C6E00AD1CA0 /* Pin.png in Resources */,
+				620F0605185FA6A50056178D /* Checkmark@2x.png in Resources */,
 				620ED67C17E65C6E00AD1CA0 /* Pin@2x.png in Resources */,
 				620ED67D17E65C6E00AD1CA0 /* Tag.png in Resources */,
 				620ED67E17E65C6E00AD1CA0 /* Tag@2x.png in Resources */,
