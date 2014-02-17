@@ -204,6 +204,10 @@ NSError *lastGeocodingError;
         {
             self.addressLabel.text = @"No address found";
         }
+        
+        // showing latitude and longitude labels when searching for GPS coordinate
+        self.latitudeTextLabel.hidden = NO;
+        self.longitudeTextLabel.hidden = NO;
     }
     // labels text before getting a GPS coordinate or when dealing with error
     else
@@ -252,6 +256,10 @@ NSError *lastGeocodingError;
         
         // updating the message label
         self.messageLabel.text = statusMessage;
+        
+        // hiding latitude and longitude labels when searching for GPS coordinate
+        self.latitudeTextLabel.hidden = YES;
+        self.longitudeTextLabel.hidden = YES;
     }
 }
 

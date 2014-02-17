@@ -33,6 +33,12 @@
 // connected to "Get My Location" button
 @property (nonatomic, strong) IBOutlet UIButton *getButton;
 
+// adding new outlet to allow "hiding" when searching for GPS coordinate
+@property (nonatomic, strong) IBOutlet UILabel *latitudeTextLabel;
+@property (nonatomic, strong) IBOutlet UILabel *longitudeTextLabel;
+@property (nonatomic, strong) IBOutlet UIView *panelView;
+
+
 // connected to "Get My Location" button using "touch up inside" event
 -(IBAction)getLocation:(id)sender;
 
