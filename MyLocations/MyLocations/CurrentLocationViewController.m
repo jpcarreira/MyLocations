@@ -44,6 +44,9 @@ BOOL performingReverseGeocoding;
 // ivar to store any error from reverse geocoding
 NSError *lastGeocodingError;
 
+// ivar for the progress indicator
+UIActivityIndicatorView *spinner;
+
 
 # pragma mark - standard ViewController methods
 
@@ -161,11 +164,25 @@ NSError *lastGeocodingError;
     if(updatingLocation)
     {
         [self.getButton setTitle:@"Stop!" forState:UIControlStateNormal];
+        
+        // adding "spinner effect"
+        spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        
+        // positioning the spinner inside the button
+        spinner.center = CGPointMake(self.getButton.bounds.size.width - spinner.bounds.size.width / 2.0f - 10.0f, self.getButton.bounds.size.height - spinner.bounds.size.height / 2.0f);
+        
+        // starting anitmation and making it visible
+        [spinner startAnimating];
+        [self.getButton addSubview:spinner];
     }
     // if we already have a valid GPS location
     else
     {
         [self.getButton setTitle:@"Get My Location" forState:UIControlStateNormal];
+        
+        // "reverting" spinner animation
+        [spinner removeFromSuperview];
+        spinner = nil;
     }
 }
 

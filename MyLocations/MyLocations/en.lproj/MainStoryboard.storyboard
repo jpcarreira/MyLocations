@@ -51,7 +51,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" id="69f-O1-UZZ">
-                                <rect key="frame" x="20" y="40" width="280" height="240"/>
+                                <rect key="frame" x="20" y="41" width="280" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="Panel.png" id="R7E-7T-cjC">
