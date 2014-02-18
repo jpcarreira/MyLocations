@@ -56,6 +56,8 @@
 		62BCFA7D17CD3AAC00E47106 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62BCFA7B17CD3AAC00E47106 /* DataModel.xcdatamodeld */; };
 		62BCFA8017CD3E2C00E47106 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BCFA7F17CD3E2C00E47106 /* Location.m */; };
 		62C38B8818B4170B004C24D4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C38B8718B4170B004C24D4 /* QuartzCore.framework */; };
+		62C38B8C18B41962004C24D4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 62C38B8A18B41962004C24D4 /* Default.png */; };
+		62C38B8D18B41962004C24D4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62C38B8B18B41962004C24D4 /* Default@2x.png */; };
 		62C9EE0B17D038AE007B189F /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C9EE0A17D038AE007B189F /* LocationCell.m */; };
 		62EA440A17E49962001840E2 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EA440917E49962001840E2 /* UIImage+Resize.m */; };
 		62FD27F018B2ED360034C7BF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FD27EF18B2ED360034C7BF /* AudioToolbox.framework */; };
@@ -124,6 +126,8 @@
 		62BCFA7E17CD3E2C00E47106 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		62BCFA7F17CD3E2C00E47106 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		62C38B8718B4170B004C24D4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		62C38B8A18B41962004C24D4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		62C38B8B18B41962004C24D4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		62C9EE0917D038AE007B189F /* LocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCell.h; sourceTree = "<group>"; };
 		62C9EE0A17D038AE007B189F /* LocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
 		62EA440817E49962001840E2 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -256,6 +260,7 @@
 		6266A3C117C2838400B53753 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				62C38B8918B41962004C24D4 /* Launch Images */,
 				62FD27F118B2ED4D0034C7BF /* Sound */,
 				620ED65417E65C6E00AD1CA0 /* Images */,
 				620E235217E6115F00727633 /* Icon */,
@@ -269,6 +274,15 @@
 				6266A3D017C2838400B53753 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		62C38B8918B41962004C24D4 /* Launch Images */ = {
+			isa = PBXGroup;
+			children = (
+				62C38B8A18B41962004C24D4 /* Default.png */,
+				62C38B8B18B41962004C24D4 /* Default@2x.png */,
+			);
+			path = "Launch Images";
 			sourceTree = "<group>";
 		};
 		62DC402417C90C8900AD4BFB /* Hud images */ = {
@@ -349,6 +363,7 @@
 				620ED66F17E65C6E00AD1CA0 /* BlueButton.png in Resources */,
 				620ED67017E65C6E00AD1CA0 /* BlueButton@2x.png in Resources */,
 				620F0604185FA6A50056178D /* Checkmark.png in Resources */,
+				62C38B8C18B41962004C24D4 /* Default.png in Resources */,
 				62FD27F318B2ED4D0034C7BF /* Sound.caf in Resources */,
 				620ED67117E65C6E00AD1CA0 /* BlueButtonPressed.png in Resources */,
 				620ED67217E65C6E00AD1CA0 /* BlueButtonPressed@2x.png in Resources */,
@@ -364,6 +379,7 @@
 				620F0605185FA6A50056178D /* Checkmark@2x.png in Resources */,
 				620ED67C17E65C6E00AD1CA0 /* Pin@2x.png in Resources */,
 				620ED67D17E65C6E00AD1CA0 /* Tag.png in Resources */,
+				62C38B8D18B41962004C24D4 /* Default@2x.png in Resources */,
 				620ED67E17E65C6E00AD1CA0 /* Tag@2x.png in Resources */,
 				620ED67F17E65C6E00AD1CA0 /* User.png in Resources */,
 				620ED68017E65C6E00AD1CA0 /* User@2x.png in Resources */,
