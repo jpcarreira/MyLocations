@@ -13,6 +13,9 @@
 #import "NSMutableString+AddText.h"
 // import needed for sound effects
 #import <AudioToolbox/AudioServices.h>
+// import needed for animation
+#import <QuartzCore/QuartzCore.h>
+
 
 @interface CurrentLocationViewController ()
 
@@ -52,6 +55,10 @@ UIActivityIndicatorView *spinner;
 // ivar for sound effect
 SystemSoundID soundId;
 
+// ivars for animation
+UIImageView *logoImageView;
+BOOL firstTime;
+
 # pragma mark - standard ViewController methods
 
 - (void)viewDidLoad
@@ -64,6 +71,16 @@ SystemSoundID soundId;
     [self configureGetButton];
     
     [self loadSoundEffect];
+    
+    // setting up animation
+    if(firstTime)
+    {
+        [self showLogoView];
+    }
+    else
+    {
+        [self hideLogoViewAnimated:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -118,11 +135,13 @@ SystemSoundID soundId;
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        // creating the CLLocationManager object 
+        // creating the CLLocationManager object
         locationManager = [[CLLocationManager alloc] init];
         
         // creating the geocoder object
         geocoder = [[CLGeocoder alloc] init];
+        
+        firstTime = YES;
     }
     return self;
 }
@@ -135,6 +154,13 @@ SystemSoundID soundId;
  */
 -(IBAction)getLocation:(id)sender
 {
+    // setting up animation
+    if(firstTime)
+    {
+        firstTime = NO;
+        [self hideLogoViewAnimated:YES];
+    }
+    
     // if the app is currently getting a location, pressing this button should stop the updating process
     if(updatingLocation)
     {
@@ -339,7 +365,7 @@ SystemSoundID soundId;
         
         // updates location
         [locationManager startUpdatingLocation];
-    
+        
         // setting ivar to true
         updatingLocation = YES;
         
@@ -466,7 +492,7 @@ SystemSoundID soundId;
             [self stopLocationManager];
             
             [self configureGetButton];
-        
+            
             // if we haven't seen this location before (as it's > 0) we force another reverse geocoding event setting the flag to FALSE
             // as we want the address for the final location, which is the most accurate and this way we force the reverse geocoding even if we already had a previou location
             if(distance > 0)
@@ -572,5 +598,80 @@ SystemSoundID soundId;
 {
     AudioServicesPlaySystemSound(soundId);
 }
+
+
+# pragma mark - Logo view
+
+
+ -(void)showLogoView
+ {
+     // hides panel with GPS coordinates
+     self.panelView.hidden = YES;
+     logoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Logo.png"]];
+     logoImageView.center = CGPointMake(160.0f, 140.0f);
+     [self.view addSubview:logoImageView];
+ }
+ 
+ 
+ -(void)hideLogoViewAnimated:(BOOL)animated
+ {
+     // unhides panel with GPS coordinates
+     self.panelView.hidden = NO;
+     
+     // setting up 3 animations to occur at the same time
+     if(animated)
+     {
+         self.panelView.center = CGPointMake(600.0f, 140.0f);
+         
+         // panel view is placed outside the screen (somewhere on the right) and moved to the center
+         CABasicAnimation *panelMover = [CABasicAnimation animationWithKeyPath:@"position"];
+         panelMover.removedOnCompletion = NO;
+         panelMover.fillMode = kCAFillModeForwards;
+         panelMover.duration = 0.6f;
+         panelMover.fromValue = [NSValue valueWithCGPoint:self.panelView.center];
+         panelMover.toValue = [NSValue valueWithCGPoint:CGPointMake(160.0f, self.panelView.center.y)];
+         panelMover.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+         // this is the animation that takes the longed so we set a delegate on this animation so that we get notified when the animation is over
+         panelMover.delegate = self;
+         [self.panelView.layer addAnimation:panelMover forKey:@"panelMover"];
+         
+         // logo image slides out of the screen and at the same time rotates around its center
+         CABasicAnimation *logoMover = [CABasicAnimation animationWithKeyPath:@"position"];
+         logoMover.removedOnCompletion = NO;
+         logoMover.fillMode = kCAFillModeForwards;
+         logoMover.duration = 0.5f;
+         logoMover.fromValue = [NSValue valueWithCGPoint:logoImageView.center];
+         logoMover.toValue = [NSValue valueWithCGPoint:CGPointMake(-160.0f, logoImageView.center.y)];
+         logoMover.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+         [logoImageView.layer addAnimation:logoMover forKey:@"logoMover"];
+         
+         CABasicAnimation *logoRotator = [CABasicAnimation animationWithKeyPath:@"transform-rotation.z"];
+         logoRotator.removedOnCompletion = NO;
+         logoRotator.fillMode = kCAFillModeForwards;
+         logoRotator.duration = 0.5f;
+         logoRotator.fromValue = [NSNumber numberWithFloat:0];
+         logoRotator.toValue = [NSNumber numberWithFloat: -2 * M_PI];
+         logoRotator.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+         [logoImageView.layer addAnimation:logoRotator forKey:@"logoRotator"];
+     }
+     else
+     {
+         [logoImageView removeFromSuperview];
+         logoImageView = nil;
+     }
+ }
+ 
+ 
+ // delegate method
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    [self.panelView.layer removeAllAnimations];
+    self.panelView.center = CGPointMake(160.0f, 140.0f);
+    
+    [logoImageView.layer removeAllAnimations];
+    [logoImageView removeFromSuperview];
+    logoImageView = nil;
+}
+ 
 
 @end

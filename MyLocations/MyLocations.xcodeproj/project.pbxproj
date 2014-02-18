@@ -55,6 +55,7 @@
 		62BCFA7A17CD3A7200E47106 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BCFA7917CD3A7200E47106 /* CoreData.framework */; };
 		62BCFA7D17CD3AAC00E47106 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62BCFA7B17CD3AAC00E47106 /* DataModel.xcdatamodeld */; };
 		62BCFA8017CD3E2C00E47106 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BCFA7F17CD3E2C00E47106 /* Location.m */; };
+		62C38B8818B4170B004C24D4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C38B8718B4170B004C24D4 /* QuartzCore.framework */; };
 		62C9EE0B17D038AE007B189F /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C9EE0A17D038AE007B189F /* LocationCell.m */; };
 		62EA440A17E49962001840E2 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EA440917E49962001840E2 /* UIImage+Resize.m */; };
 		62FD27F018B2ED360034C7BF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FD27EF18B2ED360034C7BF /* AudioToolbox.framework */; };
@@ -122,6 +123,7 @@
 		62BCFA7C17CD3AAC00E47106 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		62BCFA7E17CD3E2C00E47106 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		62BCFA7F17CD3E2C00E47106 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		62C38B8718B4170B004C24D4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		62C9EE0917D038AE007B189F /* LocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCell.h; sourceTree = "<group>"; };
 		62C9EE0A17D038AE007B189F /* LocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
 		62EA440817E49962001840E2 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62C38B8818B4170B004C24D4 /* QuartzCore.framework in Frameworks */,
 				62FD27F018B2ED360034C7BF /* AudioToolbox.framework in Frameworks */,
 				626DD68717DF8DD2003F3340 /* MapKit.framework in Frameworks */,
 				62BCFA7A17CD3A7200E47106 /* CoreData.framework in Frameworks */,
@@ -206,6 +209,7 @@
 		6266A3B917C2838400B53753 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				62C38B8718B4170B004C24D4 /* QuartzCore.framework */,
 				62FD27EF18B2ED360034C7BF /* AudioToolbox.framework */,
 				626DD68617DF8DD2003F3340 /* MapKit.framework */,
 				62BCFA7917CD3A7200E47106 /* CoreData.framework */,
