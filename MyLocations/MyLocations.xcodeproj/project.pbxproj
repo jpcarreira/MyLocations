@@ -57,6 +57,8 @@
 		62BCFA8017CD3E2C00E47106 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BCFA7F17CD3E2C00E47106 /* Location.m */; };
 		62C9EE0B17D038AE007B189F /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C9EE0A17D038AE007B189F /* LocationCell.m */; };
 		62EA440A17E49962001840E2 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EA440917E49962001840E2 /* UIImage+Resize.m */; };
+		62FD27F018B2ED360034C7BF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FD27EF18B2ED360034C7BF /* AudioToolbox.framework */; };
+		62FD27F318B2ED4D0034C7BF /* Sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 62FD27F218B2ED4D0034C7BF /* Sound.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +126,8 @@
 		62C9EE0A17D038AE007B189F /* LocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
 		62EA440817E49962001840E2 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		62EA440917E49962001840E2 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		62FD27EF18B2ED360034C7BF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		62FD27F218B2ED4D0034C7BF /* Sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sound.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62FD27F018B2ED360034C7BF /* AudioToolbox.framework in Frameworks */,
 				626DD68717DF8DD2003F3340 /* MapKit.framework in Frameworks */,
 				62BCFA7A17CD3A7200E47106 /* CoreData.framework in Frameworks */,
 				6266A3E917C2BEDA00B53753 /* CoreLocation.framework in Frameworks */,
@@ -201,6 +206,7 @@
 		6266A3B917C2838400B53753 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				62FD27EF18B2ED360034C7BF /* AudioToolbox.framework */,
 				626DD68617DF8DD2003F3340 /* MapKit.framework */,
 				62BCFA7917CD3A7200E47106 /* CoreData.framework */,
 				6266A3E817C2BEDA00B53753 /* CoreLocation.framework */,
@@ -246,6 +252,7 @@
 		6266A3C117C2838400B53753 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				62FD27F118B2ED4D0034C7BF /* Sound */,
 				620ED65417E65C6E00AD1CA0 /* Images */,
 				620E235217E6115F00727633 /* Icon */,
 				62DC402417C90C8900AD4BFB /* Hud images */,
@@ -267,6 +274,14 @@
 				620F0603185FA6A50056178D /* Checkmark@2x.png */,
 			);
 			name = "Hud images";
+			sourceTree = "<group>";
+		};
+		62FD27F118B2ED4D0034C7BF /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				62FD27F218B2ED4D0034C7BF /* Sound.caf */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +345,7 @@
 				620ED66F17E65C6E00AD1CA0 /* BlueButton.png in Resources */,
 				620ED67017E65C6E00AD1CA0 /* BlueButton@2x.png in Resources */,
 				620F0604185FA6A50056178D /* Checkmark.png in Resources */,
+				62FD27F318B2ED4D0034C7BF /* Sound.caf in Resources */,
 				620ED67117E65C6E00AD1CA0 /* BlueButtonPressed.png in Resources */,
 				620ED67217E65C6E00AD1CA0 /* BlueButtonPressed@2x.png in Resources */,
 				620ED67317E65C6E00AD1CA0 /* Locations.png in Resources */,

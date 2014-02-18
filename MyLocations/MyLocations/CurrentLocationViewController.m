@@ -11,6 +11,8 @@
 // import needed for segue
 #import "LocationDetailsViewController.h"
 #import "NSMutableString+AddText.h"
+// import needed for sound effects
+#import <AudioToolbox/AudioServices.h>
 
 @interface CurrentLocationViewController ()
 
@@ -47,6 +49,8 @@ NSError *lastGeocodingError;
 // ivar for the progress indicator
 UIActivityIndicatorView *spinner;
 
+// ivar for sound effect
+SystemSoundID soundId;
 
 # pragma mark - standard ViewController methods
 
@@ -58,6 +62,8 @@ UIActivityIndicatorView *spinner;
 	[self updateLabels];
     
     [self configureGetButton];
+    
+    [self loadSoundEffect];
 }
 
 - (void)didReceiveMemoryWarning
@@ -491,6 +497,12 @@ UIActivityIndicatorView *spinner;
                  // (usually there's only one object in the array but sometimes one location coordinate may correspond to more than one address)
                  if(error == nil && [placemarks count] > 0)
                  {
+                     // only plays sound the first time it geocodes
+                     if(placemark == nil)
+                     {
+                         NSLog(@"First geocoding");
+                         [self playSoundEffect];
+                     }
                      // as said before we save the last object
                      placemark = [placemarks lastObject];
                  }
@@ -523,6 +535,42 @@ UIActivityIndicatorView *spinner;
             }
         }
     }
+}
+
+
+# pragma mark - Sound effect
+
+-(void)loadSoundEffect
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Sound.caf" ofType:nil];
+    NSURL *fileURL = [NSURL fileURLWithPath:path isDirectory:NO];
+    
+    if(fileURL == nil)
+    {
+        NSLog(@"NSURL is nil for path %@", path);
+        return;
+    }
+    
+    OSStatus error = AudioServicesCreateSystemSoundID((__bridge CFURLRef)fileURL, &soundId);
+    
+    if(error != kAudioServicesNoError)
+    {
+        NSLog(@"Error code %ld loading sound at path %@", error, path);
+        return;
+    }
+}
+
+
+-(void)unloadSoundEffect
+{
+    AudioServicesDisposeSystemSoundID(soundId);
+    soundId = 0;
+}
+
+
+-(void)playSoundEffect
+{
+    AudioServicesPlaySystemSound(soundId);
 }
 
 @end
